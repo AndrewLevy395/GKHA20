@@ -7,8 +7,6 @@ import mainmenu
 import glovars
 
 
-#test your leader
-
 def init():
     global clock, width, height
     pygame.init()
@@ -45,7 +43,7 @@ def intro():
             glovars.screen.fill(glovars.black)
         elif loopTotalTime >13:
             glovars.screen.fill(glovars.black)
-            glovars.screen.blit(introScreenStart,(0,25)) #this can be changed to save a small amount of space if need be
+            glovars.screen.blit(introScreenStart,(0,25)) #this can be removed to save a small amount of space if need be
         else:
             glovars.screen.fill(glovars.black)
             glovars.screen.blit(introScreen,(0,25))       

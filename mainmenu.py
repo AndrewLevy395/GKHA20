@@ -1,8 +1,10 @@
 import os
+from os import path
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 import time
 import random
+import json
 
 import glovars
 import playnowmenu
@@ -63,6 +65,16 @@ def initBorders():
     pygame.draw.rect(glovars.screen,glovars.black,(1020,0,4,626),0)
 
 def runMenu():
+
+    if(not path.exists("savedata.json")):
+        data = {}
+        data["franchises"] = []
+        data["stories"] = []
+        data["codes"] = []
+        dfile = open("savedata.json", "w")
+        json.dump(data, dfile)
+        dfile.close()
+
     nextmenu = -1
     exitLoop = False
     click = False
