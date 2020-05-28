@@ -5,6 +5,7 @@ import pygame
 import glovars
 import defaultTeam
 import mainmenu
+import gameplay
 
 def initImages():
     global computerTeamLeft, computerTeamInfo, computerTeamRight, playerTeamLeft, playerTeamInfo, playerTeamRight, backButtonClickCheck, playButtonClickCheck
@@ -114,5 +115,7 @@ def runMenu(listPlayer, listComputer):
                     listPlayer = len(glovars.defaultTeams) - 1
             if event.type == pygame.MOUSEBUTTONDOWN and backButtonClickCheck.collidepoint(pygame.mouse.get_pos()):
                 return mainmenu.runMenu()
+            if event.type == pygame.MOUSEBUTTONDOWN and playButtonClickCheck.collidepoint(pygame.mouse.get_pos()):
+                return gameplay.knockeyGame(glovars.defaultTeams[listPlayer], glovars.defaultTeams[listComputer])
         loopImages(listPlayer, listComputer)
         pygame.display.flip()
