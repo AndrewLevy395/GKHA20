@@ -7,6 +7,7 @@ import glovars
 
 from pygame.locals import *
 
+#test your leader
 
 def init():
     global clock, width, height
