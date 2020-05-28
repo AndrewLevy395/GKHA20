@@ -2,10 +2,10 @@ import os
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 import time
+
 import mainmenu
 import glovars
 
-from pygame.locals import *
 
 #test your leader
 
@@ -58,9 +58,7 @@ def intro():
 def game():
     mainmenu.runMenu()
 
-
-if __name__ == "__main__":
-    init()
-    #intro()
-    game()
-    pygame.quit()
+init()
+#intro()
+game()
+pygame.quit()

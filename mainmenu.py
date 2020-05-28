@@ -9,8 +9,6 @@ import playnowmenu
 import franchiseload
 import storyload
 
-from pygame.locals import *
-
 def initImages():
     
     glovars.screen.fill(glovars.black)
@@ -63,7 +61,6 @@ def initBorders():
     pygame.draw.rect(glovars.screen,glovars.black,(340,0,4,626),0)
     pygame.draw.rect(glovars.screen,glovars.black,(682,0,4,626),0)
     pygame.draw.rect(glovars.screen,glovars.black,(1020,0,4,626),0)
-
 
 def runMenu():
     nextmenu = -1
