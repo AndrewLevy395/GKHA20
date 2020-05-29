@@ -33,11 +33,11 @@ def initImages():
     pygame.draw.rect(glovars.screen,glovars.white,(698,480,226,50),0)
 
     #franchise info
-    glovars.message_display("new story",110,88,glovars.EASmall,glovars.white)
-    glovars.message_display("new story",110,188,glovars.EASmall,glovars.white)
-    glovars.message_display("new story",110,288,glovars.EASmall,glovars.white)
-    glovars.message_display("new story",110,388,glovars.EASmall,glovars.white)
-    glovars.message_display("new story",110,488,glovars.EASmall,glovars.white)
+    glovars.message_display("new story",110,88,glovars.EASmall30,glovars.white)
+    glovars.message_display("new story",110,188,glovars.EASmall30,glovars.white)
+    glovars.message_display("new story",110,288,glovars.EASmall30,glovars.white)
+    glovars.message_display("new story",110,388,glovars.EASmall30,glovars.white)
+    glovars.message_display("new story",110,488,glovars.EASmall30,glovars.white)
 
 
 def runMenu():

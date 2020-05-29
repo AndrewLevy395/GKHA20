@@ -66,7 +66,7 @@ def initImages():
     playButtonClickCheck = glovars.screen.blit(pygame.image.load("assets/images/playButton.png"), (824,576))
 
     #team select
-    glovars.message_display("team select",768,19,glovars.teamSelectFont,glovars.white)
+    glovars.message_display("team select",748,19,glovars.teamSelectFont,glovars.white)
 
 def loopImages(listPlayer, listComputer):
     glovars.screen.blit(glovars.defaultTeams[listPlayer].selectImage, (589,150))

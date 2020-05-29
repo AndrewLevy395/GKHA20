@@ -3,7 +3,6 @@ os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 import time
 
-
 import glovars
 
 
@@ -16,13 +15,13 @@ def init():
     clock = pygame.time.Clock()
     glovars.init(screen)
     initImages()
-    
 
 
 def initImages():
     global introScreen, introScreenStart
     introScreen = pygame.image.load("assets/images/gkhaMain.png")
     introScreenStart = pygame.image.load("assets/images/gkhaMainClick.png")
+
 
 def intro():
     intro = True
@@ -55,8 +54,10 @@ def intro():
         loopTotalTime = loopTimeTracker - loopStart
     return exitLoop
 
+
 def game():
     mainmenu.runMenu()
+
 
 init()
 import mainmenu

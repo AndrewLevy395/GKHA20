@@ -5,7 +5,7 @@ import defaultTeam
 def init(thisScreen):
 
     #colors
-    global black, white, grey, red, googusGreen, lightGrey, darkGrey
+    global black, white, grey, red, googusGreen, lightGrey, darkGrey, blackTint
     black = 0, 0, 0
     white = 255, 255, 255
     darkGrey = 100, 100, 100
@@ -13,6 +13,7 @@ def init(thisScreen):
     lightGrey = 225, 225, 225
     red = 234, 0, 0
     googusGreen = 33, 239, 22
+    blackTint = 20, 20, 20
 
     #screen
     global screen

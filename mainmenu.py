@@ -8,7 +8,7 @@ import json
 
 import glovars
 import playnowmenu
-import franchiseload
+from franchise import franchiseload
 import storyload
 
 def initImages():
