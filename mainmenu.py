@@ -1,6 +1,4 @@
-import os
 from os import path
-os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 import time
 import random
@@ -9,7 +7,7 @@ import json
 import glovars
 import playnowmenu
 from franchise import franchiseload
-import storyload
+from storymode import storyload
 
 def initImages():
     

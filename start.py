@@ -7,12 +7,11 @@ import glovars
 
 
 def init():
-    global clock, width, height
+    global width, height
     pygame.init()
     pygame.display.set_caption('GKHA 20')
     width, height = 1024, 626
     screen = pygame.display.set_mode((width, height))
-    clock = pygame.time.Clock()
     glovars.init(screen)
     initImages()
 
@@ -48,7 +47,7 @@ def intro():
         else:
             glovars.screen.fill(glovars.black)
             glovars.screen.blit(introScreen,(0,25))       
-        clock.tick(30)
+        glovars.clock.tick(30)
         pygame.display.flip()
         loopTimeTracker = time.perf_counter()
         loopTotalTime = loopTimeTracker - loopStart

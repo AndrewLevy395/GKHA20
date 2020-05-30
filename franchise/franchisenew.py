@@ -1,5 +1,3 @@
-import os
-os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 import string
 import json
@@ -9,7 +7,7 @@ import mainmenu
 from franchise import franchiseload
 from franchise import franchisemenu
 
-def loopImages(selectedTeam, name_string):
+def loopImages(selectedTeam, name_string, franchises):
     global backButtonClickCheck, playerTeamRight, playerTeamLeft
 
     #background
@@ -51,27 +49,37 @@ def loopImages(selectedTeam, name_string):
 
     #fill in ovr
     pygame.draw.rect(glovars.screen,glovars.black,(534,480,90,45),0)
-    glovars.message_display("OVR:",543,478,glovars.teamFont,glovars.white)
+    glovars.message_display("OVR:",543,478,glovars.teamFont40,glovars.white)
     glovars.message_display(str(glovars.defaultTeams[selectedTeam].overall),634,421,glovars.EALarge,glovars.white)
 
     #fill in name
     pygame.draw.rect(glovars.screen,glovars.black,(328,96,367,50),0)
 
+    #variables for play button
+    duplicate = False
+    playButtonClickCheck = False
+
+    #check if name is valid
+    for i in range(len(franchises)):
+        if franchises[i]["info"][0]["name"] == name_string:
+            duplicate = True
+
+    #display name and play button
     if len(name_string) > 0:
         #start button
-        pygame.draw.rect(glovars.screen,glovars.white,(820,572,204,4),0)
-        pygame.draw.rect(glovars.screen,glovars.white,(820,576,4,50),0)
-        playButtonClickCheck = glovars.screen.blit(pygame.image.load("assets/images/playButton.png"), (824,576))
         glovars.message_display(name_string,338,100,glovars.teamSelectFont,glovars.white)
+        if not duplicate:
+            pygame.draw.rect(glovars.screen,glovars.white,(820,572,204,4),0)
+            pygame.draw.rect(glovars.screen,glovars.white,(820,576,4,50),0)
+            playButtonClickCheck = glovars.screen.blit(pygame.image.load("assets/images/playButton.png"), (824,576))
     else:
         #name text
-        playButtonClickCheck = False
         glovars.message_display("type name:",338,100,glovars.teamSelectFont,glovars.white)
     
     return playButtonClickCheck
         
 
-def runMenu(selectedTeam):
+def runMenu(selectedTeam, franchises):
 
     exitLoop = False
 
@@ -95,7 +103,7 @@ def runMenu(selectedTeam):
                         rfile = open("savedata.json", "r")
                         data = json.load(rfile)
                         rfile.close()
-                        data["franchises"].append({"info":[{"name":sep_string,"team":glovars.defaultTeams[selectedTeam].name}]})
+                        data["franchises"].append({"info":[{"name":sep_string,"userteam":glovars.defaultTeams[selectedTeam].name, "season": "1"}], "teamdata":glovars.franchiseTeamData})
                         wfile = open("savedata.json", "w")
                         json.dump(data, wfile)
                         wfile.close()
@@ -128,7 +136,7 @@ def runMenu(selectedTeam):
             
         seperator = ""
         sep_string = seperator.join(name_string)
-        playButtonClickCheck = loopImages(selectedTeam, sep_string)
+        playButtonClickCheck = loopImages(selectedTeam, sep_string, franchises)
         if backButtonClickCheck.collidepoint(pygame.mouse.get_pos()):
                 backButtonClickCheck = glovars.screen.blit(pygame.image.load("assets/images/backButtonHover.png"), (0,576))
         else:

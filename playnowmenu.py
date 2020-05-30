@@ -1,5 +1,3 @@
-import os
-os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 
 import glovars
@@ -62,7 +60,7 @@ def initImages():
     playButtonClickCheck = glovars.screen.blit(pygame.image.load("assets/images/playButton.png"), (824,576))
 
     #team select
-    glovars.message_display("team select",748,19,glovars.teamSelectFont,glovars.white)
+    glovars.message_display("team select",754,19,glovars.teamSelectFont,glovars.black)
 
 def loopImages(listPlayer, listComputer):
     glovars.screen.blit(glovars.defaultTeams[listPlayer].selectImage, (589,150))
@@ -71,8 +69,8 @@ def loopImages(listPlayer, listComputer):
     #fill in ovr
     pygame.draw.rect(glovars.screen,glovars.black,(270,480,90,45),0)
     pygame.draw.rect(glovars.screen,glovars.black,(799,480,90,45),0)
-    glovars.message_display("OVR:",279,478,glovars.teamFont,glovars.white)
-    glovars.message_display("OVR:",808,478,glovars.teamFont,glovars.white)
+    glovars.message_display("OVR:",279,478,glovars.teamFont40,glovars.white)
+    glovars.message_display("OVR:",808,478,glovars.teamFont40,glovars.white)
     glovars.message_display(str(glovars.defaultTeams[listComputer].overall),370,421,glovars.EALarge,glovars.white)
     glovars.message_display(str(glovars.defaultTeams[listPlayer].overall),899,421,glovars.EALarge,glovars.white)
 

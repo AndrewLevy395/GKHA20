@@ -1,5 +1,3 @@
-import os
-os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 import json
 
@@ -27,7 +25,7 @@ def initImages():
     glovars.message_display("franchise select",668,19,glovars.teamSelectFont,glovars.black)
 
     #delete mode
-    glovars.message_display("Press y to toggle between load and delete mode",480,590,glovars.teamFontSmall,glovars.black)
+    glovars.message_display("Press y to toggle between load and delete mode",480,590,glovars.teamFont20,glovars.black)
 
 def loopImages(tint):
     global selected_franchise, loadFranchise
@@ -113,7 +111,7 @@ def printExtras(fnum, x, y):
         pygame.draw.rect(glovars.screen,loadcolor,(100,y,824,50),0)
     #scorebug
     for i in glovars.defaultTeams:
-        if i.name == str(franchises[fnum]["info"][0]["team"]):
+        if i.name == str(franchises[fnum]["info"][0]["userteam"]):
             glovars.screen.blit(i.scorebug, (x,y))
 
 def drawSlot(fnum, color):
@@ -147,7 +145,7 @@ def runMenu():
                     return mainmenu.runMenu()
                 if selected_franchise:
                     if selected_franchise.collidepoint(pygame.mouse.get_pos()):
-                        return franchisenew.runMenu(0)
+                        return franchisenew.runMenu(0,franchises)
                 for i in range(len(loadFranchise)):
                     if loadFranchise[i]:
                         if loadFranchise[i].collidepoint(pygame.mouse.get_pos()):
