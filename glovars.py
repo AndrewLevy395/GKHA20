@@ -5,7 +5,7 @@ import defaultTeam
 def init(thisScreen):
 
     #colors
-    global black, white, grey, red, googusGreen, lightGrey, darkGrey, blackTint
+    global black, white, grey, red, googusGreen, lightGrey, darkGrey, darkerGrey, blackTint
     black = 0, 0, 0
     white = 255, 255, 255
     darkGrey = 100, 100, 100
@@ -13,26 +13,26 @@ def init(thisScreen):
     lightGrey = 225, 225, 225
     red = 234, 0, 0
     googusGreen = 33, 239, 22
-    blackTint = 20, 20, 20
+    blackTint = 35, 35, 35
 
     #screen
     global screen
     screen = thisScreen
 
     #fonts
-    global ESPNSmall, EALarge, teamFont, teamSelectFont, EASmall30, periodFont, periodFontSmall, scoreFont, ESPN, timeFont
+    global ESPNSmall, EALarge, teamFont, teamFontSmall, teamSelectFont, EASmall30, EASmall50, periodFont, periodFontSmall, scoreFont, ESPN, timeFont
     ESPNSmall = pygame.font.Font("assets/fonts/esp_ital.ttf", 25)
     ESPN = pygame.font.Font("assets/fonts/esp_ital.ttf", 40)
     EALarge = pygame.font.Font("assets/fonts/EASPORTS15.ttf", 100)
     EASmall30 = pygame.font.Font("assets/fonts/EASPORTS15.ttf", 30)
+    EASmall50 = pygame.font.Font("assets/fonts/EASPORTS15.ttf", 50)
     teamFont = pygame.font.Font("assets/fonts/Panton-LightCaps.otf", 40)
+    teamFontSmall = pygame.font.Font("assets/fonts/Panton-LightCaps.otf", 20)
     teamSelectFont = pygame.font.Font("assets/fonts/Panton-LightCaps.otf", 35)
     periodFont = pygame.font.Font("assets/fonts/Klavika_Regular_Plain.otf", 48)
     periodFontSmall = pygame.font.Font("assets/fonts/Klavika_Regular_Plain.otf", 24)
     scoreFont = pygame.font.Font("assets/fonts/Panton-BlackCaps.otf", 40)
     timeFont = pygame.font.Font("assets/fonts/CursedTimerULiL.ttf", 40)
-
-
 
     #teams
     global defaultTeams

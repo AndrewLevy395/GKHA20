@@ -43,16 +43,12 @@ def initImages():
     playerTeamLeft = pygame.draw.rect(glovars.screen,glovars.black,(593,96,100,50),0)
     playerTeamInfo = pygame.draw.rect(glovars.screen,glovars.black,(930,116,30,30),0)
     playerTeamRight = pygame.draw.rect(glovars.screen,glovars.black,(697,96,100,50),0)
-    glovars.screen.blit(pygame.image.load("assets/images/arrow.png"), (595,96))
-    glovars.screen.blit(pygame.image.load("assets/images/arrowR.png"), (699,96))
     glovars.message_display("i",941,121,glovars.ESPNSmall,glovars.white)
 
     #fill in computer team arrows and info
     computerTeamLeft = pygame.draw.rect(glovars.screen,glovars.black,(227,96,100,50),0)
     computerTeamInfo = pygame.draw.rect(glovars.screen,glovars.black,(64,116,30,30),0)
     computerTeamRight = pygame.draw.rect(glovars.screen,glovars.black,(331,96,100,50),0)
-    glovars.screen.blit(pygame.image.load("assets/images/arrow.png"), (229,96))
-    glovars.screen.blit(pygame.image.load("assets/images/arrowR.png"), (333,96))
     glovars.message_display("i",75,121,glovars.ESPNSmall,glovars.white)
 
     #back button
@@ -83,6 +79,44 @@ def loopImages(listPlayer, listComputer):
     #mouse image to signify player controlled
     pygame.draw.rect(glovars.screen,glovars.black,(589,425,75,100),0)
     glovars.screen.blit(pygame.image.load("assets/images/mouse.png"), (587,425))
+
+def loopTint():
+
+        #arrow tint
+        if playerTeamLeft.collidepoint(pygame.mouse.get_pos()):
+            pygame.draw.rect(glovars.screen,glovars.blackTint,(593,96,100,50),0)
+        else:
+            pygame.draw.rect(glovars.screen,glovars.black,(593,96,100,50),0)
+        if playerTeamRight.collidepoint(pygame.mouse.get_pos()):
+            pygame.draw.rect(glovars.screen,glovars.blackTint,(697,96,100,50),0)
+        else:
+            pygame.draw.rect(glovars.screen,glovars.black,(697,96,100,50),0)
+        if computerTeamLeft.collidepoint(pygame.mouse.get_pos()):
+            pygame.draw.rect(glovars.screen,glovars.blackTint,(227,96,100,50),0)
+        else:
+            pygame.draw.rect(glovars.screen,glovars.black,(227,96,100,50),0)
+        if computerTeamRight.collidepoint(pygame.mouse.get_pos()):
+            pygame.draw.rect(glovars.screen,glovars.blackTint,(331,96,100,50),0)
+        else:
+            pygame.draw.rect(glovars.screen,glovars.black,(331,96,100,50),0)
+
+        #arrows
+        glovars.screen.blit(pygame.image.load("assets/images/arrow.png"), (595,96))
+        glovars.screen.blit(pygame.image.load("assets/images/arrowR.png"), (699,96))
+            
+        glovars.screen.blit(pygame.image.load("assets/images/arrow.png"), (229,96))
+        glovars.screen.blit(pygame.image.load("assets/images/arrowR.png"), (333,96))
+
+        #back/play tint
+        if backButtonClickCheck.collidepoint(pygame.mouse.get_pos()):
+                glovars.screen.blit(pygame.image.load("assets/images/backButtonHover.png"), (0,576))
+        else:
+            glovars.screen.blit(pygame.image.load("assets/images/backButton.png"), (0,576))
+        if playButtonClickCheck.collidepoint(pygame.mouse.get_pos()):
+            glovars.screen.blit(pygame.image.load("assets/images/playButtonHover.png"), (824,576))
+        else:
+            glovars.screen.blit(pygame.image.load("assets/images/playButton.png"), (824,576))
+
 
 def runMenu(listPlayer, listComputer):
     nextmenu = -1
@@ -118,4 +152,6 @@ def runMenu(listPlayer, listComputer):
             if event.type == pygame.MOUSEBUTTONDOWN and playButtonClickCheck.collidepoint(pygame.mouse.get_pos()):
                 return gameplay.knockeyGame(glovars.defaultTeams[listPlayer], glovars.defaultTeams[listComputer])
         loopImages(listPlayer, listComputer)
+        loopTint()
+
         pygame.display.flip()

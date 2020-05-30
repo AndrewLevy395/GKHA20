@@ -7,9 +7,10 @@ import json
 import glovars
 import mainmenu
 from franchise import franchiseload
+from franchise import franchisemenu
 
 def loopImages(selectedTeam, name_string):
-    global backButtonClickCheck, playerTeamRight, playerTeamLeft, playButtonClickCheck
+    global backButtonClickCheck, playerTeamRight, playerTeamLeft
 
     #background
     glovars.screen.blit(pygame.image.load("assets/images/franchiseBG.png"), (0,0))
@@ -35,7 +36,6 @@ def loopImages(selectedTeam, name_string):
     #back button
     pygame.draw.rect(glovars.screen,glovars.white,(0,572,204,4),0)
     pygame.draw.rect(glovars.screen,glovars.white,(200,576,4,50),0)
-    backButtonClickCheck = glovars.screen.blit(pygame.image.load("assets/images/backButton.png"), (0,576))
 
     #fill in arrows
     playerTeamLeft = pygame.draw.rect(glovars.screen,glovars.black,(328,529,100,50),0)
@@ -67,6 +67,8 @@ def loopImages(selectedTeam, name_string):
         #name text
         playButtonClickCheck = False
         glovars.message_display("type name:",338,100,glovars.teamSelectFont,glovars.white)
+    
+    return playButtonClickCheck
         
 
 def runMenu(selectedTeam):
@@ -74,6 +76,9 @@ def runMenu(selectedTeam):
     exitLoop = False
 
     name_string = []
+
+    backButtonClickCheck = glovars.screen.blit(pygame.image.load("assets/images/backButton.png"), (0,576))
+    playButtonClickCheck = False
 
     while not exitLoop:
         for event in pygame.event.get():
@@ -87,13 +92,18 @@ def runMenu(selectedTeam):
                     return franchiseload.runMenu()
                 if playButtonClickCheck != False:
                     if playButtonClickCheck.collidepoint(pygame.mouse.get_pos()):
-                        dfile = open("savedata.json", "r")
-                        data = json.load(dfile)
-                        dfile.close()
+                        rfile = open("savedata.json", "r")
+                        data = json.load(rfile)
+                        rfile.close()
                         data["franchises"].append({"info":[{"name":sep_string,"team":glovars.defaultTeams[selectedTeam].name}]})
-                        dfile = open("savedata.json", "w")
-                        json.dump(data, dfile)
-                        dfile.close()
+                        wfile = open("savedata.json", "w")
+                        json.dump(data, wfile)
+                        wfile.close()
+                        rfile = open("savedata.json", "r")
+                        franchises = json.load(rfile)["franchises"]
+                        num_franchises = len(franchises)
+                        rfile.close()
+                        franchisemenu.runMenu(franchises[num_franchises - 1], 0)
             if event.type == pygame.KEYDOWN:
                 if event.key <= 122 and event.key >= 97:
                     if len(name_string) < 15:
@@ -118,5 +128,14 @@ def runMenu(selectedTeam):
             
         seperator = ""
         sep_string = seperator.join(name_string)
-        loopImages(selectedTeam, sep_string)
+        playButtonClickCheck = loopImages(selectedTeam, sep_string)
+        if backButtonClickCheck.collidepoint(pygame.mouse.get_pos()):
+                backButtonClickCheck = glovars.screen.blit(pygame.image.load("assets/images/backButtonHover.png"), (0,576))
+        else:
+            backButtonClickCheck = glovars.screen.blit(pygame.image.load("assets/images/backButton.png"), (0,576))
+        if playButtonClickCheck:
+            if playButtonClickCheck.collidepoint(pygame.mouse.get_pos()):
+                playButtonClickCheck = glovars.screen.blit(pygame.image.load("assets/images/playButtonHover.png"), (824,576))
+            else:
+                playButtonClickCheck = glovars.screen.blit(pygame.image.load("assets/images/playButton.png"), (824,576))
         pygame.display.flip()

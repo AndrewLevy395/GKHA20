@@ -6,6 +6,7 @@ import json
 import glovars
 import mainmenu
 from franchise import franchisenew
+from franchise import franchisemenu
 
 def initImages():
     global backButtonClickCheck, franchises, num_franchises
@@ -21,13 +22,14 @@ def initImages():
     #back button
     pygame.draw.rect(glovars.screen,glovars.white,(0,572,204,4),0)
     pygame.draw.rect(glovars.screen,glovars.white,(200,576,4,50),0)
-    backButtonClickCheck = glovars.screen.blit(pygame.image.load("assets/images/backButton.png"), (0,576))
 
     #franchise select
     glovars.message_display("franchise select",668,19,glovars.teamSelectFont,glovars.black)
 
 def loopImages(tint):
-    global selected_franchise
+    global selected_franchise, loadFranchise
+
+    loadFranchise = [False] * 5
 
     if tint == True:
         newColor = glovars.blackTint
@@ -73,23 +75,23 @@ def loopImages(tint):
     
     #franchises that can be selected to load
     if num_franchises > 0:
-        pygame.draw.rect(glovars.screen,glovars.white,(100,80,824,50),0)
+        loadFranchise[0] = pygame.draw.rect(glovars.screen,glovars.white,(100,80,824,50),0)
         glovars.message_display("coach  " + str(franchises[0]["info"][0]["name"]),110,88,glovars.EASmall30,glovars.black)
         printScoreBug(0, 698, 80)
     if num_franchises > 1:
-        pygame.draw.rect(glovars.screen,glovars.white,(100,180,824,50),0)
+        loadFranchise[1] = pygame.draw.rect(glovars.screen,glovars.white,(100,180,824,50),0)
         glovars.message_display("coach  " + str(franchises[1]["info"][0]["name"]),110,188,glovars.EASmall30,glovars.black)
         printScoreBug(1, 698, 180)
     if num_franchises > 2:
-        pygame.draw.rect(glovars.screen,glovars.white,(100,280,824,50),0)
+        loadFranchise[2] = pygame.draw.rect(glovars.screen,glovars.white,(100,280,824,50),0)
         glovars.message_display("coach  " + str(franchises[2]["info"][0]["name"]),110,288,glovars.EASmall30,glovars.black)
         printScoreBug(2, 698, 280)
     if num_franchises > 3:
-        pygame.draw.rect(glovars.screen,glovars.white,(100,380,824,50),0)
+        loadFranchise[3] = pygame.draw.rect(glovars.screen,glovars.white,(100,380,824,50),0)
         glovars.message_display("coach  " + str(franchises[3]["info"][0]["name"]),110,388,glovars.EASmall30,glovars.black)
         printScoreBug(3, 698, 380)
     if num_franchises > 4:
-        pygame.draw.rect(glovars.screen,glovars.white,(100,480,824,50),0)
+        loadFranchise[4] = pygame.draw.rect(glovars.screen,glovars.white,(100,480,824,50),0)
         glovars.message_display("coach  " + str(franchises[4]["info"][0]["name"]),110,488,glovars.EASmall30,glovars.black)
         printScoreBug(4, 698, 480)
 
@@ -111,6 +113,8 @@ def runMenu():
 
     initImages()
 
+    backButtonClickCheck = glovars.screen.blit(pygame.image.load("assets/images/backButton.png"), (0,576))
+
     while not exitLoop:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -118,12 +122,20 @@ def runMenu():
                 pygame.quit()
                 exit()
                 break
+            if backButtonClickCheck.collidepoint(pygame.mouse.get_pos()):
+                backButtonClickCheck = glovars.screen.blit(pygame.image.load("assets/images/backButtonHover.png"), (0,576))
+            else:
+                backButtonClickCheck = glovars.screen.blit(pygame.image.load("assets/images/backButton.png"), (0,576))
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if backButtonClickCheck.collidepoint(pygame.mouse.get_pos()):
                     return mainmenu.runMenu()
                 if selected_franchise:
                     if selected_franchise.collidepoint(pygame.mouse.get_pos()):
                         return franchisenew.runMenu(0)
+                for i in range(len(loadFranchise)):
+                    if loadFranchise[i]:
+                        if loadFranchise[i].collidepoint(pygame.mouse.get_pos()):
+                            return franchisemenu.runMenu(franchises[i], 0)
             if selected_franchise:
                 if selected_franchise.collidepoint(pygame.mouse.get_pos()):
                     tint = True
