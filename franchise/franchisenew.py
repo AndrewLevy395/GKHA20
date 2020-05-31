@@ -6,6 +6,7 @@ import glovars
 import mainmenu
 from franchise import franchiseload
 from franchise import franchisemenu
+from franchise import schedule
 
 def loopImages(selectedTeam, name_string, franchises):
     global backButtonClickCheck, playerTeamRight, playerTeamLeft
@@ -103,7 +104,8 @@ def runMenu(selectedTeam, franchises):
                         rfile = open("savedata.json", "r")
                         data = json.load(rfile)
                         rfile.close()
-                        data["franchises"].append({"info":[{"name":sep_string,"userteam":glovars.defaultTeams[selectedTeam].name, "season": "1"}], "teamdata":glovars.franchiseTeamData})
+                        data["franchises"].append({"info":[{"name":sep_string,"userteam":glovars.defaultTeams[selectedTeam].name, "season": 1, "day": 0}], 
+                        "teamdata":glovars.franchiseTeamData, "schedule": schedule.createSchedule(10)})
                         wfile = open("savedata.json", "w")
                         json.dump(data, wfile)
                         wfile.close()
