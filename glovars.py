@@ -13,7 +13,7 @@ def init(thisScreen):
     lightGrey = 225, 225, 225
     red = 234, 0, 0
     googusGreen = 33, 239, 22
-    blackTint = 35, 35, 35
+    blackTint = 30, 30, 30
 
     #screen
     global screen

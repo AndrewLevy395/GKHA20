@@ -90,15 +90,15 @@ def loopImages(tint):
         glovars.message_display(loadstring + "  coach  " + str(franchises[1]["info"][0]["name"]),110,188,glovars.EASmall30,glovars.black)
     if num_franchises > 2:
         loadFranchise[2] = pygame.draw.rect(glovars.screen,glovars.white,(100,280,824,50),0)
-        printExtras(1, 698, 280)
+        printExtras(2, 698, 280)
         glovars.message_display(loadstring + "  coach  " + str(franchises[2]["info"][0]["name"]),110,288,glovars.EASmall30,glovars.black)
     if num_franchises > 3:
         loadFranchise[3] = pygame.draw.rect(glovars.screen,glovars.white,(100,380,824,50),0)
-        printExtras(1, 698, 380)
+        printExtras(3, 698, 380)
         glovars.message_display(loadstring + "  coach  " + str(franchises[3]["info"][0]["name"]),110,388,glovars.EASmall30,glovars.black)
     if num_franchises > 4:
         loadFranchise[4] = pygame.draw.rect(glovars.screen,glovars.white,(100,480,824,50),0)
-        printExtras(1, 698, 480)
+        printExtras(4, 698, 480)
         glovars.message_display(loadstring + "  coach  " + str(franchises[4]["info"][0]["name"]),110,488,glovars.EASmall30,glovars.black)
 
 def printExtras(fnum, x, y):

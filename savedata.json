@@ -1,0 +1,394 @@
+{
+  "franchises": [
+    {
+      "info": [
+        {
+          "name": "andydrewxp",
+          "userteam": "Alaskan Thunder",
+          "season": 1,
+          "day": 0
+        }
+      ],
+      "teamdata": [
+        {
+          "Alaskan Thunder": [
+            {
+              "overall": "6",
+              "wins": 6,
+              "losses": 0,
+              "overtimelosses": 1,
+              "scoredgoals": 0,
+              "allowedgoals": 0
+            }
+          ],
+          "American Revolution": [
+            {
+              "overall": "7",
+              "wins": 0,
+              "losses": 0,
+              "overtimelosses": 0,
+              "scoredgoals": 0,
+              "allowedgoals": 0
+            }
+          ],
+          "Boondock Beluga Whales": [
+            {
+              "overall": "6",
+              "wins": 0,
+              "losses": 0,
+              "overtimelosses": 0,
+              "scoredgoals": 0,
+              "allowedgoals": 0
+            }
+          ],
+          "Florida Tropics": [
+            {
+              "overall": "7",
+              "wins": 0,
+              "losses": 0,
+              "overtimelosses": 0,
+              "scoredgoals": 0,
+              "allowedgoals": 0
+            }
+          ],
+          "Smashville Chippewas": [
+            {
+              "overall": "7",
+              "wins": 0,
+              "losses": 0,
+              "overtimelosses": 0,
+              "scoredgoals": 0,
+              "allowedgoals": 0
+            }
+          ],
+          "Southside Spartans": [
+            {
+              "overall": "7",
+              "wins": 0,
+              "losses": 0,
+              "overtimelosses": 0,
+              "scoredgoals": 0,
+              "allowedgoals": 0
+            }
+          ]
+        }
+      ],
+      "schedule": [
+        [
+          [2, 5],
+          [0, 4],
+          [1, 3]
+        ],
+        [
+          [1, 4],
+          [0, 3],
+          [2, 5]
+        ],
+        [
+          [5, 4],
+          [1, 2],
+          [3, 0]
+        ],
+        [
+          [0, 2],
+          [3, 4],
+          [5, 1]
+        ],
+        [
+          [2, 3],
+          [4, 1],
+          [5, 0]
+        ],
+        [
+          [2, 4],
+          [0, 5],
+          [3, 1]
+        ],
+        [
+          [5, 3],
+          [1, 0],
+          [4, 2]
+        ],
+        [
+          [2, 0],
+          [4, 5],
+          [1, 3]
+        ],
+        [
+          [3, 5],
+          [0, 4],
+          [2, 1]
+        ],
+        [
+          [3, 2],
+          [1, 5],
+          [4, 0]
+        ],
+        [
+          [4, 3],
+          [0, 1],
+          [5, 2]
+        ]
+      ]
+    },
+    {
+      "info": [
+        {
+          "name": "gasedg",
+          "userteam": "Alaskan Thunder",
+          "season": 1,
+          "day": 0
+        }
+      ],
+      "teamdata": [
+        {
+          "Alaskan Thunder": [
+            {
+              "overall": "6",
+              "wins": 0,
+              "losses": 0,
+              "overtimelosses": 0,
+              "scoredgoals": 0,
+              "allowedgoals": 0
+            }
+          ],
+          "American Revolution": [
+            {
+              "overall": "7",
+              "wins": 0,
+              "losses": 0,
+              "overtimelosses": 0,
+              "scoredgoals": 0,
+              "allowedgoals": 0
+            }
+          ],
+          "Boondock Beluga Whales": [
+            {
+              "overall": "6",
+              "wins": 0,
+              "losses": 0,
+              "overtimelosses": 0,
+              "scoredgoals": 0,
+              "allowedgoals": 0
+            }
+          ],
+          "Florida Tropics": [
+            {
+              "overall": "7",
+              "wins": 0,
+              "losses": 0,
+              "overtimelosses": 0,
+              "scoredgoals": 0,
+              "allowedgoals": 0
+            }
+          ],
+          "Smashville Chippewas": [
+            {
+              "overall": "7",
+              "wins": 0,
+              "losses": 0,
+              "overtimelosses": 0,
+              "scoredgoals": 0,
+              "allowedgoals": 0
+            }
+          ],
+          "Southside Spartans": [
+            {
+              "overall": "7",
+              "wins": 0,
+              "losses": 0,
+              "overtimelosses": 0,
+              "scoredgoals": 0,
+              "allowedgoals": 0
+            }
+          ]
+        }
+      ],
+      "schedule": [
+        [
+          [4, 2],
+          [3, 0],
+          [5, 1]
+        ],
+        [
+          [4, 2],
+          [1, 0],
+          [5, 3]
+        ],
+        [
+          [1, 4],
+          [2, 5],
+          [0, 3]
+        ],
+        [
+          [2, 0],
+          [1, 3],
+          [4, 5]
+        ],
+        [
+          [3, 5],
+          [2, 1],
+          [0, 4]
+        ],
+        [
+          [0, 5],
+          [3, 1],
+          [2, 4]
+        ],
+        [
+          [3, 0],
+          [5, 4],
+          [1, 2]
+        ],
+        [
+          [4, 1],
+          [2, 3],
+          [5, 0]
+        ],
+        [
+          [0, 2],
+          [5, 1],
+          [3, 4]
+        ],
+        [
+          [1, 5],
+          [3, 2],
+          [4, 0]
+        ],
+        [
+          [5, 2],
+          [4, 3],
+          [0, 1]
+        ]
+      ]
+    },
+    {
+      "info": [
+        { "name": "aaef", "userteam": "Florida Tropics", "season": 1, "day": 0 }
+      ],
+      "teamdata": [
+        {
+          "Alaskan Thunder": [
+            {
+              "overall": "6",
+              "wins": 0,
+              "losses": 0,
+              "overtimelosses": 0,
+              "scoredgoals": 0,
+              "allowedgoals": 0
+            }
+          ],
+          "American Revolution": [
+            {
+              "overall": "7",
+              "wins": 0,
+              "losses": 0,
+              "overtimelosses": 0,
+              "scoredgoals": 0,
+              "allowedgoals": 0
+            }
+          ],
+          "Boondock Beluga Whales": [
+            {
+              "overall": "6",
+              "wins": 0,
+              "losses": 0,
+              "overtimelosses": 0,
+              "scoredgoals": 0,
+              "allowedgoals": 0
+            }
+          ],
+          "Florida Tropics": [
+            {
+              "overall": "7",
+              "wins": 0,
+              "losses": 0,
+              "overtimelosses": 0,
+              "scoredgoals": 0,
+              "allowedgoals": 0
+            }
+          ],
+          "Smashville Chippewas": [
+            {
+              "overall": "7",
+              "wins": 0,
+              "losses": 0,
+              "overtimelosses": 0,
+              "scoredgoals": 0,
+              "allowedgoals": 0
+            }
+          ],
+          "Southside Spartans": [
+            {
+              "overall": "7",
+              "wins": 0,
+              "losses": 0,
+              "overtimelosses": 0,
+              "scoredgoals": 0,
+              "allowedgoals": 0
+            }
+          ]
+        }
+      ],
+      "schedule": [
+        [
+          [3, 2],
+          [0, 4],
+          [5, 1]
+        ],
+        [
+          [2, 4],
+          [3, 1],
+          [0, 5]
+        ],
+        [
+          [5, 0],
+          [2, 3],
+          [4, 1]
+        ],
+        [
+          [3, 2],
+          [4, 0],
+          [1, 5]
+        ],
+        [
+          [0, 2],
+          [3, 4],
+          [5, 1]
+        ],
+        [
+          [4, 2],
+          [5, 3],
+          [1, 0]
+        ],
+        [
+          [4, 5],
+          [1, 3],
+          [2, 0]
+        ],
+        [
+          [1, 2],
+          [3, 0],
+          [5, 4]
+        ],
+        [
+          [1, 4],
+          [0, 3],
+          [2, 5]
+        ],
+        [
+          [4, 3],
+          [0, 1],
+          [5, 2]
+        ],
+        [
+          [3, 5],
+          [0, 4],
+          [2, 1]
+        ]
+      ]
+    }
+  ],
+  "stories": [],
+  "codes": []
+}
