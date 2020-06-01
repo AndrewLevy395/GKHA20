@@ -1,5 +1,5 @@
 import pygame
-import player
+import defaultPlayer
 
 
 class DefaultTeam:
@@ -14,9 +14,9 @@ class DefaultTeam:
         self.overall = overall #will be calculated by players later
 
 def createAll():
-    ala = DefaultTeam("Alaskan Thunder",player.andyLevyFF,"andy",player.rickyNoviaFG, 
+    ala = DefaultTeam("Alaskan Thunder",defaultPlayer.austinIngarra,defaultPlayer.andyLevy,defaultPlayer.rickyNovia, 
     pygame.image.load("assets/images/alaSB.png"), pygame.image.load("assets/images/alaPN.png"), pygame.image.load("assets/images/alaFP.png"), 6)
-    ame = DefaultTeam("American Revolution",player.mikeyPapaOF,"andy",player.mikeMarottaOG, 
+    ame = DefaultTeam("American Revolution",defaultPlayer.mikeyPapa,defaultPlayer.chrisHorowitz,defaultPlayer.mikeMarotta, 
     pygame.image.load("assets/images/ameSB.png"), pygame.image.load("assets/images/amePN.png"), pygame.image.load("assets/images/ameFP.png"), 7)
     bbw = DefaultTeam("Boondock Beluga Whales","bob","andy","ricky", 
     pygame.image.load("assets/images/bbwSB.png"), pygame.image.load("assets/images/bbwPN.png"), pygame.image.load("assets/images/bbwFP.png"), 6)

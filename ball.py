@@ -55,10 +55,10 @@ class Ball(pygame.sprite.Sprite):
         vec_b = 2 * player.speed * player.mass / total_mass
         (self.angle, self.speed) = self.vector_addition(self.angle,vec_a,temp_angle,vec_b)
         self.speed =player.shotSpeed
-        if shot == 1 or player.job == 0:
+        if shot == 1 or player.position == "goalie":
             if self.x < player.x:
                 self.angle = self.angle + .5
-        if shot == 1 or player.job == 0:
+        if shot == 1 or player.position == "goalie":
             if self.x > player.x:
                 self.angle = self.angle - .2
         if self.speed > 500:
@@ -66,7 +66,7 @@ class Ball(pygame.sprite.Sprite):
         if shot == 0:
             self.speed = player.speed
         if shot == 1:
-            if player.job == 1:
+            if player.controlled == True:
                 #slapShot.set_volume(0.5)
                 #slapShot.play(0,1300)
                 #slapShot.set_volume(0.3)
@@ -88,7 +88,7 @@ class Ball(pygame.sprite.Sprite):
         offset = 0.05 * (self.height/2 + player.radius - distance + 1)
         self.x += math.sin(temp_angle) * offset
         self.y -= math.cos(temp_angle) * offset
-        if player.job != 0:
+        if player.position != "goalie":
             player.x -= math.sin(temp_angle) * offset
             player.y += math.cos(temp_angle) * offset
         return 

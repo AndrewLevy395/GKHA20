@@ -8,7 +8,7 @@ import math
 
 
 import glovars
-import player
+import defaultPlayer
 import ball
 
 clock = pygame.time.Clock()
@@ -105,7 +105,7 @@ def goalCollide(height,width,velX,velY):
 
 
 #resets the rink and player after every goal or period
-def resetRink(playerOffense,computerOffense,playerGoalie,computerGoalie):
+def resetRink(playerOffense,computerOffense,playerDefense,computerDefense,playerGoalie,computerGoalie):
     ball1.x = 502
     ball1.y = 318
     ball1.speed = 0
@@ -113,6 +113,10 @@ def resetRink(playerOffense,computerOffense,playerGoalie,computerGoalie):
     playerOffense.y = playerOffense.initY
     computerOffense.x = computerOffense.initX
     computerOffense.y = computerOffense.initY
+    playerDefense.x = playerDefense.initX
+    playerDefense.y = playerDefense.initY
+    computerDefense.x = computerDefense.initX
+    computerDefense.y = computerDefense.initY
     playerGoalie.x = playerGoalie.initX
     playerGoalie.y = playerGoalie.initY
     computerGoalie.x = computerGoalie.initX
@@ -136,8 +140,8 @@ def goalieMove(player,time_delta,team1,team2):
 
 
 #AI forward movement 
-def forwardMove(player,time_delta,holding):
-    forwardKeys = [0, 0, 0, 0]
+def forwardAIMove(player,time_delta,holding):
+    aimovement = [0, 0, 0, 0]
     normal = 0
     up = 0
     down = 0
@@ -153,89 +157,89 @@ def forwardMove(player,time_delta,holding):
                 if player.x < 205:
                     normal = 1
                 elif player.x > ball1.x:
-                    forwardKeys[2] = 1
+                    aimovement[2] = 1
                     if randomMove == 1:
-                         forwardKeys[0] = 1
+                         aimovement[0] = 1
                     if randomMove == 3:
-                         forwardKeys[1] = 1
+                         aimovement[1] = 1
                 else:
-                    forwardKeys[3] = 1
+                    aimovement[3] = 1
                     if randomMove == 1:
-                         forwardKeys[0] = 1
+                         aimovement[0] = 1
                     if randomMove == 3:
-                         forwardKeys[1] = 1
+                         aimovement[1] = 1
             elif player.y > 425:
                 if player.x > 412:
-                    forwardKeys[0] = 1
-                    forwardKeys[2] = 1
+                    aimovement[0] = 1
+                    aimovement[2] = 1
                 elif player.x > 205:
-                    forwardKeys[0] = 1
+                    aimovement[0] = 1
                     if randomMove == 2:
-                       forwardKeys[2] = 1 
+                       aimovement[2] = 1 
                 elif player.x > 40:
-                    forwardKeys[2] = 1
+                    aimovement[2] = 1
                     if randomMove == 1:
-                        forwardKeys[0] = 1
+                        aimovement[0] = 1
                 else:
-                    forwardKeys[0] = 1
+                    aimovement[0] = 1
             else:
-                forwardKeys[0] = 1
+                aimovement[0] = 1
                 if randomMove == 3:
-                         forwardKeys[1] = 1
+                         aimovement[1] = 1
         elif ball1.y > 373:
             if player.y > 425:
                 if player.x < 205:
                     normal = 1
                 elif player.x > ball1.x:
-                    forwardKeys[2] = 1
+                    aimovement[2] = 1
                     if randomMove == 1:
-                         forwardKeys[1] = 1
+                         aimovement[1] = 1
                     if randomMove == 3:
-                         forwardKeys[0] = 1
+                         aimovement[0] = 1
                 else:
-                    forwardKeys[3] = 1
+                    aimovement[3] = 1
                     if randomMove == 1:
-                         forwardKeys[1] = 1
+                         aimovement[1] = 1
                     if randomMove == 3:
-                         forwardKeys[0] = 1
+                         aimovement[0] = 1
             elif player.y <175:
                 if player.x > 412:
-                    forwardKeys[1] = 1
-                    forwardKeys[2] = 1
+                    aimovement[1] = 1
+                    aimovement[2] = 1
                 elif player.x > 205:
-                    forwardKeys[1] = 1
+                    aimovement[1] = 1
                 elif player.x > 40:
-                    forwardKeys[2] = 1
+                    aimovement[2] = 1
                 else:
-                    forwardKeys[1] = 1
+                    aimovement[1] = 1
             else:
-                forwardKeys[1] = 1
+                aimovement[1] = 1
         else:
             if player.x > 350:
-                forwardKeys[2] = 1
+                aimovement[2] = 1
             elif player.x > 205:
                 if player.y <175 or player.y > 425:
-                    forwardKeys[2] = 1
+                    aimovement[2] = 1
                 else:
                     if player.y > ball1.y:
-                        forwardKeys[0] = 1
+                        aimovement[0] = 1
                     else:
-                        forwardKeys[1] = 1
+                        aimovement[1] = 1
             elif player.x > 30:
-                forwardKeys[2] = 1
+                aimovement[2] = 1
                 if randomMove == 3:
-                         forwardKeys[1] = 1
+                         aimovement[1] = 1
             else:
                 if player.y > ball1.y:
-                    forwardKeys[0] = 1
+                    aimovement[0] = 1
                     if randomMove == 2:
-                        forwardKeys[0] = 0
-                        forwardKeys[1] = 1
+                        aimovement[0] = 0
+                        aimovement[1] = 1
                 else:
-                    forwardKeys[1] = 1
+                    aimovement[1] = 1
                     if randomMove == 2:
-                        forwardKeys[1] = 0
-                        forwardKeys[0] = 1
+                        aimovement[1] = 0
+                        aimovement[0] = 1
                     
                     
     elif ball1.x <= 780:
@@ -250,53 +254,53 @@ def forwardMove(player,time_delta,holding):
                 normal = 1
         elif player.x < 205:
             if player.y < 120:
-                forwardKeys[3] = 1
+                aimovement[3] = 1
             elif player.y < 300:
-                forwardKeys[0] = 1
+                aimovement[0] = 1
             elif player.y < 440:
-                forwardKeys[1] = 1
+                aimovement[1] = 1
             else:
-                forwardKeys[3] = 1
+                aimovement[3] = 1
         else:
             if player.y < 205 or player.y > 373:
-                forwardKeys[2] = 1
+                aimovement[2] = 1
     else:
         if holding == 0:
             if player.x < 610:
-                forwardKeys[3] = 1
+                aimovement[3] = 1
             elif player.x < 720:
                 if ball1.y < 210 and player.y < 175:
-                    forwardKeys[0] = 1
+                    aimovement[0] = 1
                 elif ball1.y > 373 and player.y > 425:
-                    forwardKeys[1] = 1
+                    aimovement[1] = 1
                 elif ball1.y > player.y:
-                    forwardKeys[1] = 1
+                    aimovement[1] = 1
                 elif ball1.y < player.y:
-                    forwardKeys[0] = 1
+                    aimovement[0] = 1
             if player.x > 620:
-                forwardKeys[2] = 1
+                aimovement[2] = 1
                 
                 
     if player.x > 780:
         normal = 0
     if normal:
-        forwardKeys = [0, 0, 0, 0]
+        aimovement = [0, 0, 0, 0]
         if ball1.x-30 < player.x:
-            forwardKeys[2] = 1
+            aimovement[2] = 1
         if ball1.x-30 > player.x:
-            forwardKeys[3] = 1
+            aimovement[3] = 1
         if ball1.y-30 > player.y:
-            forwardKeys[1] = 1
+            aimovement[1] = 1
         if ball1.y-30 < player.y:
-            forwardKeys[0] = 1
+            aimovement[0] = 1
     if up:
-        forwardKeys[0] = 1
-        forwardKeys[1] = 0
+        aimovement[0] = 1
+        aimovement[1] = 0
     if down:
-        forwardKeys[1] = 1
-        forwardKeys[0] = 0
+        aimovement[1] = 1
+        aimovement[0] = 0
         
-    player.move(forwardKeys[0],forwardKeys[1],forwardKeys[2],forwardKeys[3],time_delta)
+    player.move(aimovement[0],aimovement[1],aimovement[2],aimovement[3],time_delta)
 
 #collision between player and AI forwards
 def playersCollide(playerOffense,computerOffense):
@@ -319,10 +323,26 @@ def playersCollide(playerOffense,computerOffense):
 
 def knockeyGame(yourTeam,oppTeam):
 
+    #set all players
     playerOffense = yourTeam.offense
+    playerDefense = yourTeam.defense
     playerGoalie = oppTeam.goalie
     computerOffense = oppTeam.offense
+    computerDefense = oppTeam.defense
     computerGoalie = yourTeam.goalie
+
+    playerOffense.controlled = True
+
+    #set all start locations
+    playerOffense.setInitLocation(455,265)
+    playerDefense.setInitLocation(550,300)
+    playerGoalie.setInitLocation(664,220)
+    computerOffense.setInitLocation(344,154)
+    computerDefense.setInitLocation(250,300)
+    computerGoalie.setInitLocation(130,220)
+
+    #list of all players
+    allPlayers = [playerOffense, playerDefense, playerGoalie, computerOffense, computerDefense, computerGoalie]
 
     paused = 0
     pauser = 0
@@ -366,7 +386,7 @@ def knockeyGame(yourTeam,oppTeam):
     endTotalTime = 0
     anyGame = 0
 
-    resetRink(playerOffense,computerOffense,playerGoalie,computerGoalie)
+    resetRink(playerOffense,computerOffense,playerDefense,computerDefense,playerGoalie,computerGoalie)
     
     while gameLoop == 1 and endLoop == 1:
         space = 0
@@ -380,12 +400,11 @@ def knockeyGame(yourTeam,oppTeam):
         glovars.screen.blit(scorebug2, (703,0))
         glovars.screen.blit(scorebug2, (404,0))
 
-##        glovars.screen.blit(banner,(0,0))
         glovars.screen.blit(orangeBall, [ball1.x,ball1.y])
-        glovars.screen.blit(playerOffense.image, [playerOffense.x,playerOffense.y])
-        glovars.screen.blit(computerOffense.image, [computerOffense.x,computerOffense.y])
-        glovars.screen.blit(playerGoalie.image, [playerGoalie.x,playerGoalie.y])
-        glovars.screen.blit(computerGoalie.image, [computerGoalie.x,computerGoalie.y])
+
+        for i in allPlayers:
+            glovars.screen.blit(i.image, [i.x, i.y])
+            
         if anyPeriod:
             glovars.screen.blit(periodScreen,(0,50))
         if anyGoal:
@@ -441,29 +460,24 @@ def knockeyGame(yourTeam,oppTeam):
         time_delta = clock.get_time() / 1000.0
         if paused == 0:
             playerOffense.move(keys[0],keys[2],keys[1],keys[3],time_delta)
-        
-        if playerOffense.x > (1024-(10+playerOffense.width1/2)):
-            playerOffense.x = (1024-(10+playerOffense.width1/2))
-        if playerOffense.x < 10:
-            playerOffense.x = 10
-        if playerOffense.y > 626-(10+playerOffense.height1/2):
-            playerOffense.y = 626-(10+playerOffense.height1/2)
-        if playerOffense.y < 60:
-            playerOffense.y = 60
-        if computerOffense.x > (1024-(10+computerOffense.width1/2)):
-            computerOffense.x = (1024-(10+computerOffense.width1/2))
-        if computerOffense.x < 10:
-            computerOffense.x = 10
-        if computerOffense.y > 626-(10+computerOffense.height1/2):
-            computerOffense.y = 626-(10+computerOffense.height1/2)
-        if computerOffense.y < 60:
-            computerOffense.y = 60
+
+        for i in allPlayers:
+            if i.x > (1024 - (10 + i.w / 2)):
+                i.x = (1024 - (10 + i.w / 2))
+            if i.x < 10:
+                i.x = 10
+            if i.y > 626 - (10 + i.h / 2):
+                i.y = 626 - (10 + i.h / 2)
+            if i.y < 60:
+                i.y = 60
 
         if paused == 0:  
             ball1.move(time_delta)
 
-        if paused == 0: 
-            forwardMove(computerOffense,time_delta,0)
+        if paused == 0:
+            for i in allPlayers:
+                if i.position != "goalie" and i.controlled == False:
+                    forwardAIMove(i,time_delta,0)
 
         moveChance = random.randint(0,playerGoalie.reaction)
         if moveChance != 1 and paused == 0:
@@ -504,7 +518,6 @@ def knockeyGame(yourTeam,oppTeam):
         playersCollide(computerOffense,playerGoalie)
         playersCollide(playerOffense,computerGoalie)
         playersCollide(playerOffense,playerGoalie)
-
 
         if shootCooldown > 0:
             shootCooldown = shootCooldown + 1
@@ -552,18 +565,18 @@ def knockeyGame(yourTeam,oppTeam):
         elif ball1.rect.colliderect(goal15):
             allowOffset = goalCollide(15,85,velX,velY)
             
-        if playerOffense.x>120-playerOffense.width1/2 and playerOffense.x<205 and playerOffense.y>203-playerOffense.height1/4.5 and playerOffense.y<373+playerOffense.height1/2-playerOffense.height1/4.5:
+        if playerOffense.x>120-playerOffense.w/2 and playerOffense.x<205 and playerOffense.y>203-playerOffense.h/4.5 and playerOffense.y<373+playerOffense.h/2-playerOffense.h/4.5:
             playerOffense.x = playerOffense.groldx
             playerOffense.y = playerOffense.groldy
-        if playerOffense.x>819-playerOffense.width1/2 and playerOffense.x<904 and playerOffense.y>203-playerOffense.height1/4.5 and playerOffense.y<373+playerOffense.height1/2-playerOffense.height1/4.5:
+        if playerOffense.x>819-playerOffense.w/2 and playerOffense.x<904 and playerOffense.y>203-playerOffense.h/4.5 and playerOffense.y<373+playerOffense.h/2-playerOffense.h/4.5:
             playerOffense.x = playerOffense.groldx
             playerOffense.y = playerOffense.groldy
 
-        if computerOffense.x>120-computerOffense.width1/2 and computerOffense.x<205 and computerOffense.y>203-computerOffense.height1/4.5 and computerOffense.y<373+computerOffense.height1/2-computerOffense.height1/4.5:
+        if computerOffense.x>120-computerOffense.w/2 and computerOffense.x<205 and computerOffense.y>203-computerOffense.h/4.5 and computerOffense.y<373+computerOffense.h/2-computerOffense.h/4.5:
 
             computerOffense.x = computerOffense.groldx
             computerOffense.y = computerOffense.groldy
-        if computerOffense.x>819-computerOffense.width1/2 and computerOffense.x<904 and computerOffense.y>203-computerOffense.height1/4.5 and computerOffense.y<373+computerOffense.height1/2-computerOffense.height1/4.5:
+        if computerOffense.x>819-computerOffense.w/2 and computerOffense.x<904 and computerOffense.y>203-computerOffense.h/4.5 and computerOffense.y<373+computerOffense.h/2-computerOffense.h/4.5:
             computerOffense.x = computerOffense.groldx
             computerOffense.y = computerOffense.groldy
 
@@ -612,7 +625,7 @@ def knockeyGame(yourTeam,oppTeam):
         if goalTotalTime > 2:
             anyGoal = 0
             goalTotalTime = 0
-            resetRink(playerOffense,computerOffense,playerGoalie,computerGoalie)
+            resetRink(playerOffense,computerOffense,playerDefense,computerDefense,playerGoalie,computerGoalie)
 
         if endOfPeriod:
             periodTime = time.perf_counter()
@@ -625,7 +638,7 @@ def knockeyGame(yourTeam,oppTeam):
             anyPeriod = 0
             periodTotalTime = 0
             period = period + 1
-            resetRink(playerOffense,computerOffense,playerGoalie,computerGoalie)
+            resetRink(playerOffense,computerOffense,playerDefense,computerDefense,playerGoalie,computerGoalie)
 
         if endOfGame:
             endTime = time.perf_counter()
