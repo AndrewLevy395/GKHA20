@@ -105,7 +105,9 @@ def runMenu(selectedTeam, franchises):
                         data = json.load(rfile)
                         rfile.close()
                         data["franchises"].append({"info":[{"name":sep_string,"userteam":glovars.defaultTeams[selectedTeam].name, "season": 1, "day": 0}], 
-                        "teamdata":glovars.franchiseTeamData, "schedule": schedule.createSchedule(10), "results":[]})
+                        "teamdata":glovars.franchiseTeamData, "schedule": schedule.createSchedule(10), "results":[],
+                        "playerdata": glovars.franchisePlayerData})
+                        print(glovars.franchisePlayerData)
                         wfile = open("savedata.json", "w")
                         json.dump(data, wfile)
                         wfile.close()

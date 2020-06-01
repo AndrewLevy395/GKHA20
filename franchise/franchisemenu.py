@@ -118,8 +118,11 @@ def loopImages(f):
             #set the matchup observed
             matchup = day_observe
 
+            #background
             pygame.draw.rect(glovars.screen,glovars.white,(94,152,534,400),0)
             pygame.draw.rect(glovars.screen,glovars.black,(98,156,526,392),0)
+
+            #rotate through matchup being observed
             pygame.draw.rect(glovars.screen,glovars.white,(294,548,334,50),0)
             pygame.draw.rect(glovars.screen,glovars.black,(298,552,326,42),0)
             pygame.draw.rect(glovars.screen,glovars.white,(516,548,112,50),0)
@@ -224,8 +227,21 @@ def loopImages(f):
             glovars.message_display("ga",442,180,glovars.teamFont30,glovars.googusGreen)
             glovars.message_display("e",517,180,glovars.teamFont30,glovars.googusGreen)
             glovars.message_display("e",575,180,glovars.teamFont30,glovars.googusGreen)
-        elif leagueOptions == "player stats":  
+        elif leagueOptions == "player stats": 
+
+            #fill background
             pygame.draw.rect(glovars.screen,glovars.white,(94,152,534,400),0)
+            pygame.draw.rect(glovars.screen,glovars.black,(98,156,526,392),0)
+
+            #rotate through teams
+            pygame.draw.rect(glovars.screen,glovars.white,(294,548,334,50),0)
+            pygame.draw.rect(glovars.screen,glovars.black,(298,552,326,42),0)
+            pygame.draw.rect(glovars.screen,glovars.white,(516,548,112,50),0)
+            left_observe = pygame.draw.rect(glovars.screen,glovars.black,(520,552,50,42),0)
+            right_observe = pygame.draw.rect(glovars.screen,glovars.black,(574,552,50,42),0)
+            statTeam = glovars.defaultTeams[team_observe].name
+            statTeam = statTeam.split(' ', 1)[0]
+            glovars.message_display(statTeam,306,555,glovars.teamFont30,glovars.white)
 
         # HISTORY
         elif leagueOptions == "history":
@@ -245,10 +261,11 @@ def loopImages(f):
     glovars.message_display("league",763,88,glovars.EASmall30,glovars.white)
 
 
-def optionsCheck(teamOptions, leagueOptions, oday, f):
-    global day_observe
+def optionsCheck(teamOptions, leagueOptions, oday, oteam, f):
+    global day_observe, team_observe
 
     day_observe = oday
+    team_observe = oteam
 
     #TEAM OPTIONS
     if teamOptionsButtons[0] != False:
@@ -263,7 +280,7 @@ def optionsCheck(teamOptions, leagueOptions, oday, f):
             teamOptions = "trade"
         if teamOptionsButtons[3].collidepoint(pygame.mouse.get_pos()):
             teamOptions = "free agents"
-    if left_observe:
+    if left_observe and teamOptions == "schedule":
         if left_observe.collidepoint(pygame.mouse.get_pos()):
             day_observe -= 1
             if day_observe < 0:
@@ -287,14 +304,25 @@ def optionsCheck(teamOptions, leagueOptions, oday, f):
     if leagueOptionsButtons[4] != False:
         if leagueOptionsButtons[4].collidepoint(pygame.mouse.get_pos()):
             leagueOptions = "player stats"
+            team_observe = playerTeam
         if leagueOptionsButtons[5].collidepoint(pygame.mouse.get_pos()):
             leagueOptions = "team stats"
+            team_observe = playerTeam
+    if left_observe and leagueOptions == "player stats":
+        if left_observe.collidepoint(pygame.mouse.get_pos()):
+            team_observe -= 1
+            if team_observe < 0:
+                team_observe = 5
+        if right_observe.collidepoint(pygame.mouse.get_pos()):
+            team_observe += 1
+            if team_observe > 5:
+                team_observe = 0
 
-    return teamOptions, leagueOptions, day_observe
+    return teamOptions, leagueOptions, day_observe, team_observe
 
 
 def runMenu(f, menu):
-    global tintmenus, allmenus, selected_menu, leagueOptions, teamOptions, day
+    global tintmenus, allmenus, selected_menu, leagueOptions, teamOptions, day, playerTeam
 
     #play, team, league
     selected_menu = menu
@@ -315,6 +343,13 @@ def runMenu(f, menu):
     day = f["info"][0]["day"]
     #current schedule observe day
     oday = day
+
+    #current player team
+    for i in range(6):
+        if f["info"][0]["userteam"] == glovars.defaultTeams[i].name:
+            playerTeam = i
+
+    oteam = playerTeam
 
     loopImages(f)
 
@@ -340,7 +375,7 @@ def runMenu(f, menu):
                     leagueOptions = "menu"
 
                 #check if team and league options have been selected
-                teamOptions, leagueOptions, oday = optionsCheck(teamOptions, leagueOptions, oday, f)
+                teamOptions, leagueOptions, oday, oteam = optionsCheck(teamOptions, leagueOptions, oday, oteam, f)
 
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_y:
