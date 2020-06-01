@@ -43,8 +43,8 @@ sssDesc = pygame.image.load("assets/images/SSSdesc.png")
 
 
 
-#draw goals
-goal10 = pygame.draw.rect(carpet,glovars.red,(120,208,76,7),0) #left top
+#draw goals                                   LR   UD  S L
+goal10 = pygame.draw.rect(carpet,glovars.red,(120,209,76,7),0) #left top
 goal11 = pygame.draw.rect(carpet,glovars.red,(120,209,7,125),0) #left side
 goal12 = pygame.draw.rect(carpet,glovars.red,(120,327,76,7),0) #left bottom
 
@@ -52,7 +52,7 @@ goal13 = pygame.draw.rect(carpet,glovars.red,(830,208,75,7),0) #right top
 goal14 = pygame.draw.rect(carpet,glovars.red,(898,209,7,125),0) #right side
 goal15 = pygame.draw.rect(carpet,glovars.red,(830,327,75,7),0) #right bottom
 
-goalLineLeft = pygame.draw.rect(carpet,glovars.white,(193,215,2,112),0)
+goalLineLeft = pygame.draw.rect(carpet,glovars.white,(194,216,2,111),0)
 goalLineRight = pygame.draw.rect(carpet,glovars.white,(830,215,2,112),0)
 centerLine = pygame.draw.rect(carpet,glovars.white,(510,11,4,554),0)
 

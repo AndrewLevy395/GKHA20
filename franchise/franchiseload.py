@@ -1,5 +1,3 @@
-import os
-os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 import json
 
@@ -25,6 +23,9 @@ def initImages():
 
     #franchise select
     glovars.message_display("franchise select",668,19,glovars.teamSelectFont,glovars.black)
+
+    #delete mode
+    glovars.message_display("Press y to toggle between load and delete mode",480,590,glovars.teamFont20,glovars.black)
 
 def loopImages(tint):
     global selected_franchise, loadFranchise
@@ -72,44 +73,57 @@ def loopImages(tint):
     pygame.draw.rect(glovars.screen,glovars.white,(698,380,226,50),0)
     pygame.draw.rect(glovars.screen,glovars.white,(698,480,226,50),0)
 
+    #to show user if they are loading or deleting
+    if loadmode:
+        loadstring = "load"
+    else:
+        loadstring = "delete"
     
     #franchises that can be selected to load
     if num_franchises > 0:
         loadFranchise[0] = pygame.draw.rect(glovars.screen,glovars.white,(100,80,824,50),0)
-        glovars.message_display("coach  " + str(franchises[0]["info"][0]["name"]),110,88,glovars.EASmall30,glovars.black)
-        printScoreBug(0, 698, 80)
+        printExtras(0, 698, 80)
+        glovars.message_display(loadstring + "  coach  " + str(franchises[0]["info"][0]["name"]),110,88,glovars.EASmall30,glovars.black)
     if num_franchises > 1:
         loadFranchise[1] = pygame.draw.rect(glovars.screen,glovars.white,(100,180,824,50),0)
-        glovars.message_display("coach  " + str(franchises[1]["info"][0]["name"]),110,188,glovars.EASmall30,glovars.black)
-        printScoreBug(1, 698, 180)
+        printExtras(1, 698, 180)
+        glovars.message_display(loadstring + "  coach  " + str(franchises[1]["info"][0]["name"]),110,188,glovars.EASmall30,glovars.black)
     if num_franchises > 2:
         loadFranchise[2] = pygame.draw.rect(glovars.screen,glovars.white,(100,280,824,50),0)
-        glovars.message_display("coach  " + str(franchises[2]["info"][0]["name"]),110,288,glovars.EASmall30,glovars.black)
-        printScoreBug(2, 698, 280)
+        printExtras(2, 698, 280)
+        glovars.message_display(loadstring + "  coach  " + str(franchises[2]["info"][0]["name"]),110,288,glovars.EASmall30,glovars.black)
     if num_franchises > 3:
         loadFranchise[3] = pygame.draw.rect(glovars.screen,glovars.white,(100,380,824,50),0)
-        glovars.message_display("coach  " + str(franchises[3]["info"][0]["name"]),110,388,glovars.EASmall30,glovars.black)
-        printScoreBug(3, 698, 380)
+        printExtras(3, 698, 380)
+        glovars.message_display(loadstring + "  coach  " + str(franchises[3]["info"][0]["name"]),110,388,glovars.EASmall30,glovars.black)
     if num_franchises > 4:
         loadFranchise[4] = pygame.draw.rect(glovars.screen,glovars.white,(100,480,824,50),0)
-        glovars.message_display("coach  " + str(franchises[4]["info"][0]["name"]),110,488,glovars.EASmall30,glovars.black)
-        printScoreBug(4, 698, 480)
+        printExtras(4, 698, 480)
+        glovars.message_display(loadstring + "  coach  " + str(franchises[4]["info"][0]["name"]),110,488,glovars.EASmall30,glovars.black)
 
-def printScoreBug(fnum, x, y):
+def printExtras(fnum, x, y):
+    #tint
+    if loadmode == True:
+        loadcolor = glovars.lightGrey
+    else:
+        loadcolor = glovars.red
+    if loadFranchise[fnum].collidepoint(pygame.mouse.get_pos()):
+        pygame.draw.rect(glovars.screen,loadcolor,(100,y,824,50),0)
+    #scorebug
     for i in glovars.defaultTeams:
-        if i.name == str(franchises[fnum]["info"][0]["team"]):
+        if i.name == str(franchises[fnum]["info"][0]["userteam"]):
             glovars.screen.blit(i.scorebug, (x,y))
 
 def drawSlot(fnum, color):
     location = 80 + (100 * fnum)
     pygame.draw.rect(glovars.screen,color,(100,location,824,50),0)
 
-
 def runMenu():
-    global selected_franchise
+    global selected_franchise, loadmode
     exitLoop = False
     tint = False
     selected_franchise = False
+    loadmode = True
 
     initImages()
 
@@ -131,11 +145,15 @@ def runMenu():
                     return mainmenu.runMenu()
                 if selected_franchise:
                     if selected_franchise.collidepoint(pygame.mouse.get_pos()):
-                        return franchisenew.runMenu(0)
+                        return franchisenew.runMenu(0,franchises)
                 for i in range(len(loadFranchise)):
                     if loadFranchise[i]:
                         if loadFranchise[i].collidepoint(pygame.mouse.get_pos()):
-                            return franchisemenu.runMenu(franchises[i], 0)
+                            if loadmode:
+                                return franchisemenu.runMenu(franchises[i], 0)
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_y:
+                    loadmode = not loadmode
             if selected_franchise:
                 if selected_franchise.collidepoint(pygame.mouse.get_pos()):
                     tint = True

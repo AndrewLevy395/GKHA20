@@ -1,7 +1,5 @@
-
 import pygame
 import math
-
 
 
 #sprite class
@@ -74,6 +72,7 @@ class Player(pygame.sprite.Sprite):
         dx = self.x-dx
         dy = self.y-dy
         self.angle = math.atan2(dy, dx)
+        
 
 rock = pygame.image.load("assets/images/rock.png")
 chrisP = pygame.image.load("assets/images/chris.png")
