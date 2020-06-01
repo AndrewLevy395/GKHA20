@@ -5,7 +5,7 @@ import math
 #sprite class
 class Player(pygame.sprite.Sprite):
 
-    def __init__(self, name, sprite, position, stamina, shotAccuracy, shotSpeed, speed, reaction):
+    def __init__(self, name, sprite, stamina, shotAccuracy, shotSpeed, speed, reaction):
         pygame.sprite.Sprite.__init__(self)
 
         #create image
@@ -45,7 +45,7 @@ class Player(pygame.sprite.Sprite):
         self.forwardSpeed = self.speed/1.05
         
         #info
-        self.position = position
+        self.position = None
         self.name = name
         self.controlled = False
         
@@ -101,20 +101,19 @@ rickyN = "assets/images/rickyN.png"
 chrisH = "assets/images/chrisH.png"
 
 
-#playerControlled
-playerRock = Player("Rock", rock, "defense", 7, 5, 3, 5, 5)
-#andyLevyFF = Player(124,156,455,265,200,390,4,andyL,1,"Andy Levy",True,7,4,5,10,5,6)
+rockOffense = Player("Rock O", rock, 7, 5, 3, 5, 5)
+rockDefense = Player("Rock D", rock, 7, 5, 3, 5, 5)
 
-andyLevy = Player("Andy Levy", andyL, "defense", 7, 5, 3, 5, 5)
-chrisPapa = Player("Chris Papa", chrisP, "offense", 8, 9, 9, 5, 5)
-salDelucia = Player("Sal Delucia", salD, "offense", 3, 3, 3, 5, 5)
-mikeyPapa = Player("Mikey Papa", mikeyP, "offense", 4, 10, 5, 5, 5)
-austinIngarra = Player("Austin Ingarra", austinI, "offense", 6, 6, 8, 5, 5)
-chrisHorowitz = Player("Chris Horowitz", chrisH, "defense", 5, 7, 6, 5, 5)
+andyLevy = Player("Andy Levy", andyL, 7, 5, 3, 5, 5)
+chrisPapa = Player("Chris Papa", chrisP,  8, 9, 9, 5, 5)
+salDelucia = Player("Sal Delucia", salD, 3, 3, 3, 5, 5)
+mikeyPapa = Player("Mikey Papa", mikeyP, 4, 10, 5, 5, 5)
+austinIngarra = Player("Austin Ingarra", austinI, 6, 6, 8, 5, 5)
+chrisHorowitz = Player("Chris Horowitz", chrisH, 5, 7, 6, 5, 5)
 
-mikeMarotta = Player("Mike Marotta", mikeM, "goalie", 7, 5, 3, 5, 5)
-thomBishop = Player("Thom Bishop", tomB, "goalie", 7, 7, 7, 5, 5)
-alecFowler = Player("Alec Fowler", alecF, "goalie", 7, 5, 3, 5, 5)
-collinSalatto = Player("Collin Salatto", collinS, "goalie", 7, 5, 3, 5, 5)
-mattPalma = Player("Matt Palma", mattP, "goalie", 7, 5, 3, 5, 5)
-rickyNovia = Player("Ricky Novia", rickyN, "goalie", 7, 5, 3, 5, 5)
+mikeMarotta = Player("Mike Marotta", mikeM, 7, 5, 3, 5, 5)
+thomBishop = Player("Thom Bishop", tomB, 7, 7, 7, 5, 5)
+alecFowler = Player("Alec Fowler", alecF, 7, 5, 3, 5, 5)
+collinSalatto = Player("Collin Salatto", collinS, 7, 5, 3, 5, 5)
+mattPalma = Player("Matt Palma", mattP, 7, 5, 3, 5, 5)
+rickyNovia = Player("Ricky Novia", rickyN, 7, 5, 3, 5, 5)
