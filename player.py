@@ -92,7 +92,10 @@ chrisH = pygame.image.load("assets/images/chrisH.png")
 
 #playerControlled
 playerRock = Player(204,138,461,250,150,400,1,rock,1," ",False,1,1,1,1,1,1)
-andyLevyFF = Player(124,156,455,265,200,390,4,andyL,1,"Andy Levy",True,7,4,5,10,5,6)
+#andyLevyFF = Player(124,156,455,265,200,390,4,andyL,1,"Andy Levy",True,7,4,5,10,5,6)
+
+andyLevyFF = Player(124,175,455,265,200,390,4,andyL,1,"Andy Levy",True,7,4,5,10,5,6)
+
 chrisPapaFF = Player(146,172,455,265,175,450,5,chrisP,1,"Chris Papa",True,10,4,8,6,10,7)
 salDeluciaFF = Player(132,164,455,265,175,380,3,salD,1,"Sal Delucia",False,5,5,6,6,4,4)
 mikeyPapaFF = Player(124,164,455,265,185,420,6,mikeyP,1,"Mikey Papa",False,9,7,6,8,8,8)

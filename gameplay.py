@@ -44,19 +44,23 @@ sssDesc = pygame.image.load("assets/images/SSSdesc.png")
 
 
 #draw goals
-goal10 = pygame.draw.rect(carpet,glovars.red,(120,203,85,15),0)
-goal11 = pygame.draw.rect(carpet,glovars.red,(120,218,15,140),0)
-goal12 = pygame.draw.rect(carpet,glovars.red,(120,358,85,15),0)
-goal13 = pygame.draw.rect(carpet,glovars.red,(819,203,85,15),0)
-goal14 = pygame.draw.rect(carpet,glovars.red,(889,218,15,140),0)
-goal15 = pygame.draw.rect(carpet,glovars.red,(819,358,85,15),0)
-goalLineLeft = pygame.draw.rect(carpet,glovars.white,(203,218,2,140),0)
-goalLineRight = pygame.draw.rect(carpet,glovars.white,(819,218,2,140),0)
+goal10 = pygame.draw.rect(carpet,glovars.red,(120,208,76,7),0) #left top
+goal11 = pygame.draw.rect(carpet,glovars.red,(120,209,7,125),0) #left side
+goal12 = pygame.draw.rect(carpet,glovars.red,(120,327,76,7),0) #left bottom
 
+goal13 = pygame.draw.rect(carpet,glovars.red,(830,208,75,7),0) #right top
+goal14 = pygame.draw.rect(carpet,glovars.red,(898,209,7,125),0) #right side
+goal15 = pygame.draw.rect(carpet,glovars.red,(830,327,75,7),0) #right bottom
+
+goalLineLeft = pygame.draw.rect(carpet,glovars.white,(193,215,2,112),0)
+goalLineRight = pygame.draw.rect(carpet,glovars.white,(830,215,2,112),0)
+centerLine = pygame.draw.rect(carpet,glovars.white,(510,11,4,554),0)
 
         
 ball1=ball.Ball(487,303,0,orangeBall)
 
+
+#ball collision with goal
 def goalCollide(height,width,velX,velY):
     if ball1.rect.collidepoint(120,210.5):
         ball1.x = ball1.x-5
@@ -99,6 +103,8 @@ def goalCollide(height,width,velX,velY):
     ball1.friction = .975
     return 0
 
+
+#resets the rink and player after every goal or period
 def resetRink(playerOffense,computerOffense,playerGoalie,computerGoalie):
     ball1.x = 502
     ball1.y = 318
@@ -112,6 +118,8 @@ def resetRink(playerOffense,computerOffense,playerGoalie,computerGoalie):
     computerGoalie.x = computerGoalie.initX
     computerGoalie.y = computerGoalie.initY
 
+
+#movement for goalie in coordination with where the ball is 
 def goalieMove(player,time_delta,team1,team2):
     if ball1.y-30 < player.y and player.y>228:
         player.move(1,0,0,0,time_delta)
@@ -126,6 +134,8 @@ def goalieMove(player,time_delta,team1,team2):
     if team2 and ball1.x>362 and player.x<player.initX:
         player.move(0,0,0,1,time_delta)
 
+
+#AI forward movement 
 def forwardMove(player,time_delta,holding):
     forwardKeys = [0, 0, 0, 0]
     normal = 0
@@ -288,7 +298,7 @@ def forwardMove(player,time_delta,holding):
         
     player.move(forwardKeys[0],forwardKeys[1],forwardKeys[2],forwardKeys[3],time_delta)
 
-
+#collision between player and AI forwards
 def playersCollide(playerOffense,computerOffense):
     if pygame.sprite.collide_mask(computerOffense,playerOffense) != None:
         playerOffense.x = playerOffense.groldx
