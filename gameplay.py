@@ -326,10 +326,10 @@ def knockeyGame(yourTeam,oppTeam):
     #set all players
     playerOffense = yourTeam.offense
     playerDefense = yourTeam.defense
-    playerGoalie = oppTeam.goalie
+    playerGoalie = yourTeam.goalie
     computerOffense = oppTeam.offense
     computerDefense = oppTeam.defense
-    computerGoalie = yourTeam.goalie
+    computerGoalie = oppTeam.goalie
 
     playerOffense.controlled = True
 

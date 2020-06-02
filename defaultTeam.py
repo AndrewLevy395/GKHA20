@@ -33,3 +33,7 @@ def createAll():
     pygame.image.load("assets/images/sssSB.png"), pygame.image.load("assets/images/sssPN.png"), pygame.image.load("assets/images/sssFP.png"), 7)
     teams = [ala, ame, bbw, flo, smc, sss]
     return teams
+
+
+bcp = DefaultTeam("Bamar Crab People", defaultPlayer.austinIngarra, defaultPlayer.andyLevy, defaultPlayer.mikeMarotta,
+pygame.image.load("assets/images/bcpSB.png"), pygame.image.load("assets/images/bcpPN.png"), pygame.image.load("assets/images/sssFP.png"), "P")

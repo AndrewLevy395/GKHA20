@@ -86,19 +86,19 @@ class Player(pygame.sprite.Sprite):
         self.initY = y + self.radius
         
 
-rock = "assets/images/rock.png"
-chrisP = "assets/images/chris.png"
-mikeM = "assets/images/mikem.png"
-andyL = "assets/images/andyl.png"
-tomB = "assets/images/tomb.png"
-salD = "assets/images/sald.png"
-mikeyP = "assets/images/mikeyp.png"
-collinS = "assets/images/collins.png"
-alecF = "assets/images/alecF.png"
-austinI = "assets/images/austini.png"
-mattP = "assets/images/mattp.png"
-rickyN = "assets/images/rickyN.png"
-chrisH = "assets/images/chrisH.png"
+rock = "assets/images/playersprites/rock.png"
+chrisP = "assets/images/playersprites/chris.png"
+mikeM = "assets/images/playersprites/mikem.png"
+andyL = "assets/images/playersprites/andyl.png"
+tomB = "assets/images/playersprites/tomb.png"
+salD = "assets/images/playersprites/sald.png"
+mikeyP = "assets/images/playersprites/mikeyp.png"
+collinS = "assets/images/playersprites/collins.png"
+alecF = "assets/images/playersprites/alecF.png"
+austinI = "assets/images/playersprites/austini.png"
+mattP = "assets/images/playersprites/mattp.png"
+rickyN = "assets/images/playersprites/rickyN.png"
+chrisH = "assets/images/playersprites/chrisH.png"
 
 
 rockOffense = Player("Rock O", rock, 7, 5, 3, 5, 5)

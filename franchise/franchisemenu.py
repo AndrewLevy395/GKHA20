@@ -220,10 +220,13 @@ def loopImages(f):
             glovars.message_display("player stats",110,308,glovars.teamFont30,glovars.white)
             glovars.message_display("team stats",110,506,glovars.teamFont30,glovars.white)
         elif leagueOptions == "team stats":
+            #fill background
             pygame.draw.rect(glovars.screen,glovars.white,(94,152,534,400),0)
             pygame.draw.rect(glovars.screen,glovars.black,(98,156,526,392),0)
+
+            #display stats
             glovars.message_display("team stats",116,180,glovars.teamFont30,glovars.googusGreen)
-            glovars.message_display("gf",375,180,glovars.teamFont30,glovars.googusGreen)
+            glovars.message_display("gs",375,180,glovars.teamFont30,glovars.googusGreen)
             glovars.message_display("ga",442,180,glovars.teamFont30,glovars.googusGreen)
             glovars.message_display("e",517,180,glovars.teamFont30,glovars.googusGreen)
             glovars.message_display("e",575,180,glovars.teamFont30,glovars.googusGreen)
@@ -242,6 +245,24 @@ def loopImages(f):
             statTeam = glovars.defaultTeams[team_observe].name
             statTeam = statTeam.split(' ', 1)[0]
             glovars.message_display(statTeam,306,555,glovars.teamFont30,glovars.white)
+
+            #display stats
+            glovars.message_display("player stats",116,180,glovars.teamFont30,glovars.googusGreen)
+            glovars.message_display("gs",375,180,glovars.teamFont30,glovars.googusGreen)
+            glovars.message_display("ga",442,180,glovars.teamFont30,glovars.googusGreen)
+            glovars.message_display("sog",503,180,glovars.teamFont30,glovars.googusGreen)
+            glovars.message_display("a",583,180,glovars.teamFont30,glovars.googusGreen)
+
+            offPlayer = f["teamdata"][0][glovars.defaultTeams[team_observe].name][0]["offense"]
+            defPlayer = f["teamdata"][0][glovars.defaultTeams[team_observe].name][0]["defense"]
+            goalPlayer = f["teamdata"][0][glovars.defaultTeams[team_observe].name][0]["goalie"]
+            players = [offPlayer, defPlayer, goalPlayer]
+            for i in range(3):
+                glovars.message_display(players[i],116,265 + (100 * i),glovars.teamFont30,glovars.white)
+                for j in range(len(f["playerdata"])):
+                    if players[i] == f["playerdata"][j]["name"]:
+                        glovars.message_display(str(f["playerdata"][j]["goalsScored"]),383,265 + (100 * i),glovars.teamFont30,glovars.white)
+                        glovars.message_display(f["playerdata"][j]["goalsAllowed"],450,265 + (100 * i),glovars.teamFont30,glovars.white)
 
         # HISTORY
         elif leagueOptions == "history":

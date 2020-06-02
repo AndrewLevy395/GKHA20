@@ -37,8 +37,11 @@ def init(thisScreen):
     timeFont = pygame.font.Font("assets/fonts/CursedTimerULiL.ttf", 40)
 
     #teams
-    global defaultTeams
+    global defaultTeams, playNowTeams
     defaultTeams = defaultTeam.createAll()
+    playNowTeams = []
+    for i in defaultTeams:
+        playNowTeams.append(i)
 
     #clock
     global clock
@@ -53,22 +56,23 @@ def init(thisScreen):
 
     for i in range(len(defaultTeams)):
         #default team data
-        teamData[i] = [{"overall":str(defaultTeams[i].overall), "wins": 0, "losses": 0, "overtimelosses": 0, "scoredgoals": 0, "allowedgoals": 0}]
+        teamData[i] = [{"overall":str(defaultTeams[i].overall), "wins": 0, "losses": 0, "overtimelosses": 0, "scoredgoals": 0, "allowedgoals": 0, 
+        "offense": defaultTeams[i].offense.name, "defense": defaultTeams[i].defense.name, "goalie": defaultTeams[i].goalie.name}]
 
         #default offender data
         playerData.append({"name": defaultTeams[i].offense.name, "image": defaultTeams[i].offense.sprite, 
         "stamina": defaultTeams[i].offense.stamina, "shotAccuracy": defaultTeams[i].offense.shotAccuracy, "shotSpeed": defaultTeams[i].offense.shotSpeed, 
-        "speed": defaultTeams[i].offense.speed, "reaction": defaultTeams[i].offense.reaction, "goalsScored": 0})
+        "speed": defaultTeams[i].offense.speed, "reaction": defaultTeams[i].offense.reaction, "goalsScored": 0, "goalsAllowed": "-"})
 
         #default defender data
         playerData.append({"name": defaultTeams[i].defense.name, "image": defaultTeams[i].defense.sprite, 
         "stamina": defaultTeams[i].defense.stamina, "shotAccuracy": defaultTeams[i].defense.shotAccuracy, "shotSpeed": defaultTeams[i].defense.shotSpeed, 
-        "speed": defaultTeams[i].defense.speed, "reaction": defaultTeams[i].defense.reaction, "goalsScored": 0})
+        "speed": defaultTeams[i].defense.speed, "reaction": defaultTeams[i].defense.reaction, "goalsScored": 0, "goalsAllowed": "-"})
 
         #default goalie data
         playerData.append({"name": defaultTeams[i].goalie.name, "image": defaultTeams[i].goalie.sprite, 
         "stamina": defaultTeams[i].goalie.stamina, "shotAccuracy": defaultTeams[i].goalie.shotAccuracy, "shotSpeed": defaultTeams[i].goalie.shotSpeed, 
-        "speed": defaultTeams[i].goalie.speed, "reaction": defaultTeams[i].goalie.reaction, "goalsScored": 0})
+        "speed": defaultTeams[i].goalie.speed, "reaction": defaultTeams[i].goalie.reaction, "goalsScored": 0, "goalsAllowed": "0"})
 
     franchisePlayerData = playerData
 

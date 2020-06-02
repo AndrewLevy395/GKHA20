@@ -63,16 +63,16 @@ def initImages():
     glovars.message_display("team select",754,19,glovars.teamSelectFont,glovars.black)
 
 def loopImages(listPlayer, listComputer):
-    glovars.screen.blit(glovars.defaultTeams[listPlayer].selectImage, (589,150))
-    glovars.screen.blit(glovars.defaultTeams[listComputer].selectImage, (60,150))
+    glovars.screen.blit(glovars.playNowTeams[listPlayer].selectImage, (589,150))
+    glovars.screen.blit(glovars.playNowTeams[listComputer].selectImage, (60,150))
 
     #fill in ovr
     pygame.draw.rect(glovars.screen,glovars.black,(270,480,90,45),0)
     pygame.draw.rect(glovars.screen,glovars.black,(799,480,90,45),0)
     glovars.message_display("OVR:",279,478,glovars.teamFont40,glovars.white)
     glovars.message_display("OVR:",808,478,glovars.teamFont40,glovars.white)
-    glovars.message_display(str(glovars.defaultTeams[listComputer].overall),370,421,glovars.EALarge,glovars.white)
-    glovars.message_display(str(glovars.defaultTeams[listPlayer].overall),899,421,glovars.EALarge,glovars.white)
+    glovars.message_display(str(glovars.playNowTeams[listComputer].overall),370,421,glovars.EALarge,glovars.white)
+    glovars.message_display(str(glovars.playNowTeams[listPlayer].overall),899,421,glovars.EALarge,glovars.white)
 
     #mouse image to signify player controlled
     pygame.draw.rect(glovars.screen,glovars.black,(589,425,75,100),0)
@@ -120,6 +120,13 @@ def runMenu(listPlayer, listComputer):
     nextmenu = -1
     exitLoop = False
 
+    BCP = True
+    for i in glovars.playNowTeams:
+        if i.name == "Bamar Crab People":
+            BCP = False
+    if BCP:
+        glovars.playNowTeams.append(defaultTeam.bcp)
+
     initImages()
 
     while not exitLoop:
@@ -131,24 +138,24 @@ def runMenu(listPlayer, listComputer):
                 break
             if event.type == pygame.MOUSEBUTTONDOWN and computerTeamRight.collidepoint(pygame.mouse.get_pos()):
                 listComputer += 1
-                if listComputer >= len(glovars.defaultTeams):
+                if listComputer >= len(glovars.playNowTeams):
                     listComputer = 0
             if event.type == pygame.MOUSEBUTTONDOWN and computerTeamLeft.collidepoint(pygame.mouse.get_pos()):
                 listComputer -= 1
                 if listComputer < 0:
-                    listComputer = len(glovars.defaultTeams) - 1
+                    listComputer = len(glovars.playNowTeams) - 1
             if event.type == pygame.MOUSEBUTTONDOWN and playerTeamRight.collidepoint(pygame.mouse.get_pos()):
                 listPlayer += 1
-                if listPlayer >= len(glovars.defaultTeams):
+                if listPlayer >= len(glovars.playNowTeams):
                     listPlayer = 0
             if event.type == pygame.MOUSEBUTTONDOWN and playerTeamLeft.collidepoint(pygame.mouse.get_pos()):
                 listPlayer -= 1
                 if listPlayer < 0:
-                    listPlayer = len(glovars.defaultTeams) - 1
+                    listPlayer = len(glovars.playNowTeams) - 1
             if event.type == pygame.MOUSEBUTTONDOWN and backButtonClickCheck.collidepoint(pygame.mouse.get_pos()):
                 return mainmenu.runMenu()
             if event.type == pygame.MOUSEBUTTONDOWN and playButtonClickCheck.collidepoint(pygame.mouse.get_pos()):
-                return gameplay.knockeyGame(glovars.defaultTeams[listPlayer], glovars.defaultTeams[listComputer])
+                return gameplay.knockeyGame(glovars.playNowTeams[listPlayer], glovars.playNowTeams[listComputer])
         loopImages(listPlayer, listComputer)
         loopTint()
 
