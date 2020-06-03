@@ -116,16 +116,18 @@ def loopTint():
             glovars.screen.blit(pygame.image.load("assets/images/playButton.png"), (824,576))
 
 
-def runMenu(listPlayer, listComputer):
+def runMenu(listPlayer, listComputer, codeData):
     nextmenu = -1
     exitLoop = False
 
     BCP = True
-    for i in glovars.playNowTeams:
-        if i.name == "Bamar Crab People":
-            BCP = False
-    if BCP:
-        glovars.playNowTeams.append(defaultTeam.bcp)
+    for i in codeData:
+        if i == "bamar":
+            for i in glovars.playNowTeams:
+                if i.name == "Bamar Crab People":
+                    BCP = False
+            if BCP:
+                glovars.playNowTeams.append(defaultTeam.bcp)
 
     initImages()
 

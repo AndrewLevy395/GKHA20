@@ -72,6 +72,11 @@ def runMenu():
         dfile = open("savedata.json", "w")
         json.dump(data, dfile)
         dfile.close()
+    
+    #all game data
+    rfile = open("savedata.json", "r")
+    rdata = json.load(rfile)
+    rfile.close()
 
     nextmenu = -1
     exitLoop = False
@@ -122,7 +127,7 @@ def runMenu():
         menuElapsedTime = time.perf_counter()
         menuTotalTime = menuElapsedTime - menuStartTime
         if(nextmenu == 0):
-            return playnowmenu.runMenu(0,1)
+            return playnowmenu.runMenu(0,1,rdata["codes"])
         if(nextmenu == 1):
             return franchiseload.runMenu()
         if(nextmenu == 2):

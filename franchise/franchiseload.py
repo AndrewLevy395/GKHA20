@@ -150,7 +150,7 @@ def runMenu():
                     if loadFranchise[i]:
                         if loadFranchise[i].collidepoint(pygame.mouse.get_pos()):
                             if loadmode:
-                                return franchisemenu.runMenu(franchises[i], 0)
+                                return franchisemenu.runMenu(0, i)
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_y:
                     loadmode = not loadmode

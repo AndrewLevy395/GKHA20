@@ -104,7 +104,7 @@ def runMenu(selectedTeam, franchises):
                         rfile = open("savedata.json", "r")
                         data = json.load(rfile)
                         rfile.close()
-                        data["franchises"].append({"info":[{"name":sep_string,"userteam":glovars.defaultTeams[selectedTeam].name, "season": 1, "day": 0}], 
+                        data["franchises"].append({"info":[{"name":sep_string,"userteam":glovars.defaultTeams[selectedTeam].name, "season": 8, "day": 0}], 
                         "teamdata":glovars.franchiseTeamData, "schedule": schedule.createSchedule(10), "results":[],
                         "playerdata": glovars.franchisePlayerData})
                         wfile = open("savedata.json", "w")
@@ -114,7 +114,7 @@ def runMenu(selectedTeam, franchises):
                         franchises = json.load(rfile)["franchises"]
                         num_franchises = len(franchises)
                         rfile.close()
-                        franchisemenu.runMenu(franchises[num_franchises - 1], 0)
+                        franchisemenu.runMenu(0, num_franchises - 1)
             if event.type == pygame.KEYDOWN:
                 if event.key <= 122 and event.key >= 97:
                     if len(name_string) < 15:

@@ -1,4 +1,5 @@
 import pygame
+import json
 
 import glovars
 from franchise import franchiseload
@@ -13,8 +14,11 @@ def determineTeams(f):
             if glovars.defaultTeams[j].name == f["info"][0]["userteam"]:
                 return i
 
-def loopImages(f):
-    global menuplay, menuteam, menuleague, leagueOptionsButtons, teamOptionsButtons, left_observe, right_observe
+def loopImages(data):
+    global menuplay, menuteam, menuleague, leagueOptionsButtons, teamOptionsButtons, left_observe, right_observe, moveButtons
+
+    #this franchise
+    f = data["franchises"][fnum]
 
     #background
     glovars.screen.blit(pygame.image.load("assets/images/franchiseBG.png"), (0,0))
@@ -87,6 +91,9 @@ def loopImages(f):
         
     #default all teamOptions and team buttons to false
     teamOptionsButtons = [False] * 6
+    
+    #create moveButtons
+    moveButtons = [False, False, False]
 
     #default no schedule being observed
     left_observe = False
@@ -109,8 +116,46 @@ def loopImages(f):
             glovars.message_display("schedule",375,308,glovars.teamFont30,glovars.white)
             glovars.message_display("trade",110,506,glovars.teamFont30,glovars.white)
             glovars.message_display("free agents",375,506,glovars.teamFont30,glovars.white)
+
+        # ROSTER 
         elif teamOptions == "roster":
+
+            #background
             pygame.draw.rect(glovars.screen,glovars.white,(94,152,534,400),0)
+            pygame.draw.rect(glovars.screen,glovars.black,(98,156,526,392),0)
+
+            switchColor = [glovars.black, glovars.black, glovars.black]
+
+            #display roster
+            glovars.message_display(glovars.defaultTeams[playerTeam].name.split(' ', 1)[1] + " - roster",116,180,glovars.teamFont30,glovars.googusGreen)
+
+            #display names and position inside boxes of correct color
+            offPlayer = f["teamdata"][0][glovars.defaultTeams[playerTeam].name][0]["offense"]
+            defPlayer = f["teamdata"][0][glovars.defaultTeams[playerTeam].name][0]["defense"]
+            goalPlayer = f["teamdata"][0][glovars.defaultTeams[playerTeam].name][0]["goalie"]
+            players = [offPlayer, defPlayer, goalPlayer]
+            positions = ["off", "def", "goa"]
+            for i in range(3):
+                if selected_move == i:
+                    for j in range(3):
+                        if j != i:
+                            switchColor[j] = glovars.red
+                    moveColor = glovars.googusGreen
+                else:
+                    moveColor = glovars.black
+                pygame.draw.rect(glovars.screen,glovars.white,(120,254 + (100 * i),334,58),0)
+                pygame.draw.rect(glovars.screen,moveColor,(124,258 + (100 * i),326,50),0)
+                pygame.draw.rect(glovars.screen,glovars.white,(450,254 + (100 * i),150,58),0)
+                glovars.message_display(positions[i] + ": " + players[i],130,264 + (100 * i),glovars.teamFont30,glovars.white)
+
+            #define the message in roster and print it with the correct color
+            if selected_move != None:
+                moveMessage = "here"
+            else:
+                moveMessage = "move"
+            for i in range(3):
+                moveButtons[i] = pygame.draw.rect(glovars.screen,switchColor[i],(454,258 + (100 * i),142,50),0)
+                glovars.message_display(moveMessage,485,264 + (100 * i),glovars.teamFont30,glovars.white)
 
         # SCHEDULE
         elif teamOptions == "schedule":
@@ -219,6 +264,8 @@ def loopImages(f):
             leagueOptionsButtons[5] = pygame.draw.rect(glovars.screen,glovars.black,(98,354,526,194),0)
             glovars.message_display("player stats",110,308,glovars.teamFont30,glovars.white)
             glovars.message_display("team stats",110,506,glovars.teamFont30,glovars.white)
+
+        # TEAM STATS
         elif leagueOptions == "team stats":
             #fill background
             pygame.draw.rect(glovars.screen,glovars.white,(94,152,534,400),0)
@@ -230,6 +277,15 @@ def loopImages(f):
             glovars.message_display("ga",442,180,glovars.teamFont30,glovars.googusGreen)
             glovars.message_display("e",517,180,glovars.teamFont30,glovars.googusGreen)
             glovars.message_display("e",575,180,glovars.teamFont30,glovars.googusGreen)
+
+            for i in range(6):
+                glovars.message_display(glovars.defaultTeams[i].name.split(' ', 1)[1],116,240 + (i * 50),glovars.teamFont30,glovars.white)
+                glovars.message_display("a",575,240 + (i * 50),glovars.teamFont30,glovars.white)
+                glovars.message_display(str(f["teamdata"][0][glovars.defaultTeams[i].name][0]["scoredgoals"]),380,240 + (i * 50),glovars.teamFont30,glovars.white)
+                glovars.message_display(str(f["teamdata"][0][glovars.defaultTeams[i].name][0]["allowedgoals"]),446,240 + (i * 50),glovars.teamFont30,glovars.white)
+                glovars.message_display("s",513,240 + (i * 50),glovars.teamFont30,glovars.white)
+
+        # PLAYER STATS
         elif leagueOptions == "player stats": 
 
             #fill background
@@ -287,9 +343,10 @@ def optionsCheck(teamOptions, leagueOptions, oday, oteam, f):
 
     day_observe = oday
     team_observe = oteam
+    moveColorsCheck = False
 
     #TEAM OPTIONS
-    if teamOptionsButtons[0] != False:
+    if teamOptionsButtons[0] != False: #check for click on team options tab
         if teamOptionsButtons[0].collidepoint(pygame.mouse.get_pos()):
             teamOptions = "roster"
         if teamOptionsButtons[1].collidepoint(pygame.mouse.get_pos()):
@@ -301,7 +358,7 @@ def optionsCheck(teamOptions, leagueOptions, oday, oteam, f):
             teamOptions = "trade"
         if teamOptionsButtons[3].collidepoint(pygame.mouse.get_pos()):
             teamOptions = "free agents"
-    if left_observe and teamOptions == "schedule":
+    if left_observe and teamOptions == "schedule": #check for click on schedule tab
         if left_observe.collidepoint(pygame.mouse.get_pos()):
             day_observe -= 1
             if day_observe < 0:
@@ -310,7 +367,6 @@ def optionsCheck(teamOptions, leagueOptions, oday, oteam, f):
             day_observe += 1
             if day_observe > len(f["schedule"]) - 1:
                 day_observe = 0
-
 
     #LEAGUE OPTIONS
     if leagueOptionsButtons[0] != False:
@@ -342,11 +398,25 @@ def optionsCheck(teamOptions, leagueOptions, oday, oteam, f):
     return teamOptions, leagueOptions, day_observe, team_observe
 
 
-def runMenu(f, menu):
-    global tintmenus, allmenus, selected_menu, leagueOptions, teamOptions, day, playerTeam
+def runMenu(menu, ffran):
+    global tintmenus, allmenus, selected_menu, leagueOptions, teamOptions, day, playerTeam, selected_move, fnum
+
+    #set the fnum of this franchise
+    fnum = ffran
+
+    #all game data
+    rfile = open("savedata.json", "r")
+    data = json.load(rfile)
+    rfile.close()
+
+    #data for this franchise
+    f = data["franchises"][fnum]
 
     #play, team, league
     selected_menu = menu
+    
+    #change color for roster moves
+    selected_move = None 
 
     #default options to the menu
     teamOptions = "menu"
@@ -372,7 +442,7 @@ def runMenu(f, menu):
 
     oteam = playerTeam
 
-    loopImages(f)
+    loopImages(data)
 
     backButtonClickCheck = glovars.screen.blit(pygame.image.load("assets/images/backButton.png"), (0,576))
 
@@ -394,6 +464,36 @@ def runMenu(f, menu):
                 if menuleague.collidepoint(pygame.mouse.get_pos()):
                     selected_menu = 2
                     leagueOptions = "menu"
+                
+                for i in range(3):
+                    if moveButtons[i] != False: #check for click on roster tab - move buttons
+                        if moveButtons[i].collidepoint(pygame.mouse.get_pos()):
+                            if selected_move == i:
+                                selected_move = None
+                            elif selected_move == None:
+                                selected_move = i
+                            elif selected_move != i:
+                                for j in range(len(f["teamdata"][0])):
+                                    if f["info"][0]["userteam"] == glovars.defaultTeams[j].name:
+                                        if (i == 0 or selected_move == 0) and (i == 1 or selected_move == 1):
+                                            newOffense = f["teamdata"][0][f["info"][0]["userteam"]][0]["defense"]
+                                            newDefense = f["teamdata"][0][f["info"][0]["userteam"]][0]["offense"]
+                                            newGoalie = f["teamdata"][0][f["info"][0]["userteam"]][0]["goalie"]
+                                        elif (i == 0 or selected_move == 0) and (i == 2 or selected_move == 2):
+                                            newOffense = f["teamdata"][0][f["info"][0]["userteam"]][0]["goalie"]
+                                            newDefense = f["teamdata"][0][f["info"][0]["userteam"]][0]["defense"]
+                                            newGoalie = f["teamdata"][0][f["info"][0]["userteam"]][0]["offense"]
+                                        elif (i == 1 or selected_move == 1) and (i == 2 or selected_move == 2):
+                                            newOffense = f["teamdata"][0][f["info"][0]["userteam"]][0]["offense"]
+                                            newDefense = f["teamdata"][0][f["info"][0]["userteam"]][0]["goalie"]
+                                            newGoalie = f["teamdata"][0][f["info"][0]["userteam"]][0]["defense"]
+                                data["franchises"][fnum]["teamdata"][0][f["info"][0]["userteam"]][0]["offense"] = newOffense
+                                data["franchises"][fnum]["teamdata"][0][f["info"][0]["userteam"]][0]["defense"] = newDefense
+                                data["franchises"][fnum]["teamdata"][0][f["info"][0]["userteam"]][0]["goalie"] = newGoalie
+                                wfile = open("savedata.json", "w")
+                                json.dump(data, wfile)
+                                wfile.close()
+                                selected_move = None
 
                 #check if team and league options have been selected
                 teamOptions, leagueOptions, oday, oteam = optionsCheck(teamOptions, leagueOptions, oday, oteam, f)
@@ -409,7 +509,7 @@ def runMenu(f, menu):
                         tintmenus[i] = glovars.blackTint
                     else: 
                         tintmenus[i] = glovars.black
-        loopImages(f)
+        loopImages(data)
         allmenus = [menuplay, menuteam, menuleague]
         if backButtonClickCheck.collidepoint(pygame.mouse.get_pos()):
                 backButtonClickCheck = glovars.screen.blit(pygame.image.load("assets/images/backButtonHover.png"), (0,576))

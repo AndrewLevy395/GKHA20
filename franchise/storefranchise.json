@@ -3,7 +3,7 @@
     {
       "info": [
         {
-          "name": "0",
+          "name": "o",
           "userteam": "Boondock Beluga Whales",
           "season": 1,
           "day": 2
@@ -18,7 +18,10 @@
               "losses": 0,
               "overtimelosses": 0,
               "scoredgoals": 0,
-              "allowedgoals": 0
+              "allowedgoals": 0,
+              "offense": "Rock O",
+              "defense": "Andy Levy",
+              "goalie": "Ricky Novia"
             }
           ],
           "American Revolution": [
@@ -28,7 +31,10 @@
               "losses": 0,
               "overtimelosses": 0,
               "scoredgoals": 0,
-              "allowedgoals": 0
+              "allowedgoals": 0,
+              "offense": "Mikey Papa",
+              "defense": "Rock D",
+              "goalie": "Mike Marotta"
             }
           ],
           "Boondock Beluga Whales": [
@@ -38,7 +44,10 @@
               "losses": 0,
               "overtimelosses": 0,
               "scoredgoals": 0,
-              "allowedgoals": 0
+              "allowedgoals": 0,
+              "offense": "Austin Ingarra",
+              "defense": "Rock D",
+              "goalie": "Alec Fowler"
             }
           ],
           "Florida Tropics": [
@@ -48,7 +57,10 @@
               "losses": 0,
               "overtimelosses": 0,
               "scoredgoals": 0,
-              "allowedgoals": 0
+              "allowedgoals": 0,
+              "offense": "Rock O",
+              "defense": "Chris Horowitz",
+              "goalie": "Collin Salatto"
             }
           ],
           "Smashville Chippewas": [
@@ -58,7 +70,10 @@
               "losses": 0,
               "overtimelosses": 0,
               "scoredgoals": 0,
-              "allowedgoals": 0
+              "allowedgoals": 0,
+              "offense": "Sal Delucia",
+              "defense": "Rock D",
+              "goalie": "Thom Bishop"
             }
           ],
           "Southside Spartans": [
@@ -68,66 +83,69 @@
               "losses": 0,
               "overtimelosses": 0,
               "scoredgoals": 0,
-              "allowedgoals": 0
+              "allowedgoals": 0,
+              "offense": "Chris Papa",
+              "defense": "Rock D",
+              "goalie": "Matt Palma"
             }
           ]
         }
       ],
       "schedule": [
         [
-          [4, 5],
-          [0, 3],
-          [1, 2]
-        ],
-        [
-          [1, 0],
-          [5, 3],
-          [4, 2]
-        ],
-        [
-          [5, 4],
-          [3, 0],
-          [1, 2]
-        ],
-        [
-          [0, 3],
-          [2, 5],
-          [1, 4]
-        ],
-        [
-          [1, 5],
-          [3, 2],
-          [4, 0]
-        ],
-        [
-          [5, 2],
-          [0, 1],
-          [4, 3]
-        ],
-        [
-          [5, 1],
-          [0, 2],
-          [3, 4]
-        ],
-        [
-          [5, 0],
           [2, 3],
-          [4, 1]
+          [0, 4],
+          [5, 1]
         ],
         [
-          [2, 4],
-          [3, 1],
-          [0, 5]
+          [3, 4],
+          [0, 2],
+          [5, 1]
         ],
         [
-          [4, 5],
-          [2, 0],
-          [1, 3]
+          [0, 1],
+          [4, 3],
+          [5, 2]
+        ],
+        [
+          [3, 2],
+          [4, 0],
+          [1, 5]
+        ],
+        [
+          [3, 0],
+          [5, 4],
+          [1, 2]
         ],
         [
           [2, 1],
-          [3, 5],
-          [0, 4]
+          [0, 4],
+          [3, 5]
+        ],
+        [
+          [1, 0],
+          [4, 2],
+          [5, 3]
+        ],
+        [
+          [0, 5],
+          [3, 1],
+          [2, 4]
+        ],
+        [
+          [4, 1],
+          [5, 0],
+          [2, 3]
+        ],
+        [
+          [2, 5],
+          [0, 3],
+          [1, 4]
+        ],
+        [
+          [4, 5],
+          [1, 3],
+          [2, 0]
         ]
       ],
       "results": [
@@ -141,6 +159,206 @@
           [{ "Goals": 3 }, { "Goals": 1 }],
           [{ "Goals": 0 }, { "Goals": 2 }]
         ]
+      ],
+      "playerdata": [
+        {
+          "name": "Rock O",
+          "image": "assets/images/playersprites/rock.png",
+          "stamina": 7,
+          "shotAccuracy": 5,
+          "shotSpeed": 450,
+          "speed": 175,
+          "reaction": 5,
+          "goalsScored": 0,
+          "goalsAllowed": "-"
+        },
+        {
+          "name": "Andy Levy",
+          "image": "assets/images/playersprites/andyl.png",
+          "stamina": 7,
+          "shotAccuracy": 5,
+          "shotSpeed": 450,
+          "speed": 175,
+          "reaction": 5,
+          "goalsScored": 0,
+          "goalsAllowed": "-"
+        },
+        {
+          "name": "Ricky Novia",
+          "image": "assets/images/playersprites/rickyN.png",
+          "stamina": 7,
+          "shotAccuracy": 5,
+          "shotSpeed": 450,
+          "speed": 175,
+          "reaction": 5,
+          "goalsScored": 0,
+          "goalsAllowed": "0"
+        },
+        {
+          "name": "Mikey Papa",
+          "image": "assets/images/playersprites/mikeyp.png",
+          "stamina": 4,
+          "shotAccuracy": 10,
+          "shotSpeed": 450,
+          "speed": 175,
+          "reaction": 5,
+          "goalsScored": 0,
+          "goalsAllowed": "-"
+        },
+        {
+          "name": "Rock D",
+          "image": "assets/images/playersprites/rock.png",
+          "stamina": 7,
+          "shotAccuracy": 5,
+          "shotSpeed": 450,
+          "speed": 175,
+          "reaction": 5,
+          "goalsScored": 0,
+          "goalsAllowed": "-"
+        },
+        {
+          "name": "Mike Marotta",
+          "image": "assets/images/playersprites/mikem.png",
+          "stamina": 7,
+          "shotAccuracy": 5,
+          "shotSpeed": 450,
+          "speed": 175,
+          "reaction": 5,
+          "goalsScored": 0,
+          "goalsAllowed": "0"
+        },
+        {
+          "name": "Austin Ingarra",
+          "image": "assets/images/playersprites/austini.png",
+          "stamina": 6,
+          "shotAccuracy": 6,
+          "shotSpeed": 450,
+          "speed": 175,
+          "reaction": 5,
+          "goalsScored": 0,
+          "goalsAllowed": "-"
+        },
+        {
+          "name": "Rock D",
+          "image": "assets/images/playersprites/rock.png",
+          "stamina": 7,
+          "shotAccuracy": 5,
+          "shotSpeed": 450,
+          "speed": 175,
+          "reaction": 5,
+          "goalsScored": 0,
+          "goalsAllowed": "-"
+        },
+        {
+          "name": "Alec Fowler",
+          "image": "assets/images/playersprites/alecF.png",
+          "stamina": 7,
+          "shotAccuracy": 5,
+          "shotSpeed": 450,
+          "speed": 175,
+          "reaction": 5,
+          "goalsScored": 0,
+          "goalsAllowed": "0"
+        },
+        {
+          "name": "Rock O",
+          "image": "assets/images/playersprites/rock.png",
+          "stamina": 7,
+          "shotAccuracy": 5,
+          "shotSpeed": 450,
+          "speed": 175,
+          "reaction": 5,
+          "goalsScored": 0,
+          "goalsAllowed": "-"
+        },
+        {
+          "name": "Chris Horowitz",
+          "image": "assets/images/playersprites/chrisH.png",
+          "stamina": 5,
+          "shotAccuracy": 7,
+          "shotSpeed": 450,
+          "speed": 175,
+          "reaction": 5,
+          "goalsScored": 0,
+          "goalsAllowed": "-"
+        },
+        {
+          "name": "Collin Salatto",
+          "image": "assets/images/playersprites/collins.png",
+          "stamina": 7,
+          "shotAccuracy": 5,
+          "shotSpeed": 450,
+          "speed": 175,
+          "reaction": 5,
+          "goalsScored": 0,
+          "goalsAllowed": "0"
+        },
+        {
+          "name": "Sal Delucia",
+          "image": "assets/images/playersprites/sald.png",
+          "stamina": 3,
+          "shotAccuracy": 3,
+          "shotSpeed": 450,
+          "speed": 175,
+          "reaction": 5,
+          "goalsScored": 0,
+          "goalsAllowed": "-"
+        },
+        {
+          "name": "Rock D",
+          "image": "assets/images/playersprites/rock.png",
+          "stamina": 7,
+          "shotAccuracy": 5,
+          "shotSpeed": 450,
+          "speed": 175,
+          "reaction": 5,
+          "goalsScored": 0,
+          "goalsAllowed": "-"
+        },
+        {
+          "name": "Thom Bishop",
+          "image": "assets/images/playersprites/tomb.png",
+          "stamina": 7,
+          "shotAccuracy": 7,
+          "shotSpeed": 450,
+          "speed": 175,
+          "reaction": 5,
+          "goalsScored": 0,
+          "goalsAllowed": "0"
+        },
+        {
+          "name": "Chris Papa",
+          "image": "assets/images/playersprites/chris.png",
+          "stamina": 8,
+          "shotAccuracy": 9,
+          "shotSpeed": 450,
+          "speed": 175,
+          "reaction": 5,
+          "goalsScored": 0,
+          "goalsAllowed": "-"
+        },
+        {
+          "name": "Rock D",
+          "image": "assets/images/playersprites/rock.png",
+          "stamina": 7,
+          "shotAccuracy": 5,
+          "shotSpeed": 450,
+          "speed": 175,
+          "reaction": 5,
+          "goalsScored": 0,
+          "goalsAllowed": "-"
+        },
+        {
+          "name": "Matt Palma",
+          "image": "assets/images/playersprites/mattp.png",
+          "stamina": 7,
+          "shotAccuracy": 5,
+          "shotSpeed": 450,
+          "speed": 175,
+          "reaction": 5,
+          "goalsScored": 0,
+          "goalsAllowed": "0"
+        }
       ]
     }
   ],
