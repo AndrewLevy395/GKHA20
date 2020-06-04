@@ -85,7 +85,9 @@ class Player(pygame.sprite.Sprite):
         self.initX = x + self.radius
         self.initY = y + self.radius
         
+# CREATE ALL PLAYERS
 
+#player sprites
 rock = "assets/images/playersprites/rock.png"
 chrisP = "assets/images/playersprites/chris.png"
 mikeM = "assets/images/playersprites/mikem.png"
@@ -100,7 +102,7 @@ mattP = "assets/images/playersprites/mattp.png"
 rickyN = "assets/images/playersprites/rickyN.png"
 chrisH = "assets/images/playersprites/chrisH.png"
 
-
+#player objects for play now
 rockOffense = Player("Rock O", rock, 7, 5, 3, 5, 5)
 rockDefense = Player("Rock D", rock, 7, 5, 3, 5, 5)
 
@@ -111,9 +113,27 @@ mikeyPapa = Player("Mikey Papa", mikeyP, 4, 10, 5, 5, 5)
 austinIngarra = Player("Austin Ingarra", austinI, 6, 6, 8, 5, 5)
 chrisHorowitz = Player("Chris Horowitz", chrisH, 5, 7, 6, 5, 5)
 
+owenBrown = Player("Owen Brown", rock, 7, 5, 3, 5, 5)
+aidanMurray = Player("Aidan Murray", rock, 7, 5, 3, 5, 5)
+darrenBarille = Player("Darren Barille", rock, 7, 5, 3, 5, 5)
+mattRobidoux = Player("Matt Robidoux", rock, 7, 5, 3, 5, 5)
+vinnyCleary = Player("Vinny Cleary", rock, 7, 5, 3, 5, 5)
+erikGaluska = Player("Erik Galuska", rock, 7, 5, 3, 5, 5)
+
 mikeMarotta = Player("Mike Marotta", mikeM, 7, 5, 3, 5, 5)
 thomBishop = Player("Thom Bishop", tomB, 7, 7, 7, 5, 5)
 alecFowler = Player("Alec Fowler", alecF, 7, 5, 3, 5, 5)
 collinSalatto = Player("Collin Salatto", collinS, 7, 5, 3, 5, 5)
 mattPalma = Player("Matt Palma", mattP, 7, 5, 3, 5, 5)
 rickyNovia = Player("Ricky Novia", rickyN, 7, 5, 3, 5, 5)
+
+bradRobidoux = Player("Brad Robidoux", rock, 7, 5, 3, 5, 5)
+shemPrudhomme = Player("Shem Prudhomme", rock, 7, 5, 3, 5, 5)
+ianBeling = Player("Ian Beling", rock, 7, 5, 3, 5, 5)
+jarrettHissick = Player("Jarrett Hissick", rock, 7, 5, 3, 5, 5)
+erikLevenduski = Player("Erik Levenduski", rock, 7, 5, 3, 5, 5)
+georgeBonadies = Player("George Bonadies", rock, 7, 5, 3, 5, 5)
+kyleKulthau = Player("Kyle Kulthau", rock, 7, 5, 3, 5, 5)
+kevinCarnale = Player("Kevin Carnale", rock, 7, 5, 3, 5, 5)
+
+franchiseFreeAgents = [bradRobidoux, shemPrudhomme, ianBeling, jarrettHissick, erikLevenduski, georgeBonadies, kyleKulthau, kevinCarnale]

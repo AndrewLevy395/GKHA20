@@ -19,17 +19,17 @@ class DefaultTeam:
         self.overall = overall #will be calculated by players later
 
 def createAll():
-    ala = DefaultTeam("Alaskan Thunder", defaultPlayer.rockOffense, defaultPlayer.andyLevy, defaultPlayer.rickyNovia, 
+    ala = DefaultTeam("Alaskan Thunder", defaultPlayer.erikGaluska, defaultPlayer.andyLevy, defaultPlayer.rickyNovia, 
     pygame.image.load("assets/images/alaSB.png"), pygame.image.load("assets/images/alaPN.png"), pygame.image.load("assets/images/alaFP.png"), 6)
-    ame = DefaultTeam("American Revolution", defaultPlayer.mikeyPapa, defaultPlayer.rockDefense, defaultPlayer.mikeMarotta, 
+    ame = DefaultTeam("American Revolution", defaultPlayer.mikeyPapa, defaultPlayer.owenBrown, defaultPlayer.mikeMarotta, 
     pygame.image.load("assets/images/ameSB.png"), pygame.image.load("assets/images/amePN.png"), pygame.image.load("assets/images/ameFP.png"), 7)
-    bbw = DefaultTeam("Boondock Beluga Whales", defaultPlayer.austinIngarra, defaultPlayer.rockDefense, defaultPlayer.alecFowler,
+    bbw = DefaultTeam("Boondock Beluga Whales", defaultPlayer.austinIngarra, defaultPlayer.darrenBarille, defaultPlayer.alecFowler,
     pygame.image.load("assets/images/bbwSB.png"), pygame.image.load("assets/images/bbwPN.png"), pygame.image.load("assets/images/bbwFP.png"), 6)
-    flo = DefaultTeam("Florida Tropics", defaultPlayer.rockOffense, defaultPlayer.chrisHorowitz, defaultPlayer.collinSalatto,
+    flo = DefaultTeam("Florida Tropics", defaultPlayer.aidanMurray, defaultPlayer.chrisHorowitz, defaultPlayer.collinSalatto,
     pygame.image.load("assets/images/floSB.png"), pygame.image.load("assets/images/floPN.png"), pygame.image.load("assets/images/floFP.png"), 7)
-    smc = DefaultTeam("Smashville Chippewas", defaultPlayer.salDelucia, defaultPlayer.rockDefense, defaultPlayer.thomBishop,
+    smc = DefaultTeam("Smashville Chippewas", defaultPlayer.salDelucia, defaultPlayer.vinnyCleary, defaultPlayer.thomBishop,
     pygame.image.load("assets/images/smcSB.png"), pygame.image.load("assets/images/smcPN.png"), pygame.image.load("assets/images/smcFP.png"), 7)
-    sss = DefaultTeam("Southside Spartans", defaultPlayer.chrisPapa, defaultPlayer.rockDefense, defaultPlayer.mattPalma,
+    sss = DefaultTeam("Southside Spartans", defaultPlayer.chrisPapa, defaultPlayer.mattRobidoux, defaultPlayer.mattPalma,
     pygame.image.load("assets/images/sssSB.png"), pygame.image.load("assets/images/sssPN.png"), pygame.image.load("assets/images/sssFP.png"), 7)
     teams = [ala, ame, bbw, flo, smc, sss]
     return teams

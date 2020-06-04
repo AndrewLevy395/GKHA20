@@ -127,7 +127,7 @@ def loopImages(data):
             switchColor = [glovars.black, glovars.black, glovars.black]
 
             #display roster
-            glovars.message_display(glovars.defaultTeams[playerTeam].name.split(' ', 1)[1] + " - roster",116,180,glovars.teamFont30,glovars.googusGreen)
+            glovars.message_display("roster - " + glovars.defaultTeams[playerTeam].name.split(' ', 1)[1],116,180,glovars.teamFont30,glovars.googusGreen)
 
             #display names and position inside boxes of correct color
             offPlayer = f["teamdata"][0][glovars.defaultTeams[playerTeam].name][0]["offense"]
@@ -143,9 +143,9 @@ def loopImages(data):
                     moveColor = glovars.googusGreen
                 else:
                     moveColor = glovars.black
-                pygame.draw.rect(glovars.screen,glovars.white,(120,254 + (100 * i),334,58),0)
-                pygame.draw.rect(glovars.screen,moveColor,(124,258 + (100 * i),326,50),0)
-                pygame.draw.rect(glovars.screen,glovars.white,(450,254 + (100 * i),150,58),0)
+                pygame.draw.rect(glovars.screen,glovars.white,(120,254 + (100 * i),354,58),0)
+                pygame.draw.rect(glovars.screen,moveColor,(124,258 + (100 * i),346,50),0)
+                pygame.draw.rect(glovars.screen,glovars.white,(470,254 + (100 * i),130,58),0)
                 glovars.message_display(positions[i] + ": " + players[i],130,264 + (100 * i),glovars.teamFont30,glovars.white)
 
             #define the message in roster and print it with the correct color
@@ -154,14 +154,14 @@ def loopImages(data):
             else:
                 moveMessage = "move"
             for i in range(3):
-                moveButtons[i] = pygame.draw.rect(glovars.screen,switchColor[i],(454,258 + (100 * i),142,50),0)
-                glovars.message_display(moveMessage,485,264 + (100 * i),glovars.teamFont30,glovars.white)
+                moveButtons[i] = pygame.draw.rect(glovars.screen,switchColor[i],(474,258 + (100 * i),122,50),0)
+                glovars.message_display(moveMessage,495,264 + (100 * i),glovars.teamFont30,glovars.white)
 
         # SCHEDULE
         elif teamOptions == "schedule":
 
             #set the matchup observed
-            matchup = day_observe
+            matchup = page_observe
 
             #background
             pygame.draw.rect(glovars.screen,glovars.white,(94,152,534,400),0)
@@ -194,8 +194,8 @@ def loopImages(data):
                     goalsoffset = -22
 
                 #determine home and away teams, add outline, and blit to screen
-                awayschedule = f["schedule"][day_observe][i][0]
-                homeschedule = f["schedule"][day_observe][i][1]
+                awayschedule = f["schedule"][page_observe][i][0]
+                homeschedule = f["schedule"][page_observe][i][1]
                 pygame.draw.rect(glovars.screen,glovars.white,(xdist - 4 + borderoffset, 171 + (125 * i), 288, 112),0)
                 glovars.screen.blit(glovars.defaultTeams[homeschedule].scorebug, (xdist,229 + (125 * i)))
                 glovars.screen.blit(glovars.defaultTeams[awayschedule].scorebug, (xdist,175 + (125 * i)))
@@ -203,10 +203,10 @@ def loopImages(data):
                 #determine scores, add fill, and blit to screen
                 pygame.draw.rect(glovars.screen,glovars.black,(xdist + 230 + goalfilloffset, 175 + (125 * i), 50, 50),0)
                 pygame.draw.rect(glovars.screen,glovars.black,(xdist + 230 + goalfilloffset, 229 + (125 * i), 50, 50),0)
-                if day_observe < day:
-                    texthome = glovars.EASmall50.render(str((f["results"][day_observe][i][0]["Goals"])), True, glovars.white)
+                if page_observe < day:
+                    texthome = glovars.EASmall50.render(str((f["results"][page_observe][i][0]["Goals"])), True, glovars.white)
                     texthome_rect = texthome.get_rect(center = (372 + goalsoffset, 254 + (125 * i)))
-                    textaway = glovars.EASmall50.render(str((f["results"][day_observe][i][1]["Goals"])), True, glovars.white)
+                    textaway = glovars.EASmall50.render(str((f["results"][page_observe][i][1]["Goals"])), True, glovars.white)
                     textaway_rect = textaway.get_rect(center = (372 + goalsoffset, 200 + (125 * i)))
                     glovars.screen.blit(texthome, texthome_rect)
                     glovars.screen.blit(textaway, textaway_rect)
@@ -214,8 +214,40 @@ def loopImages(data):
 
         elif teamOptions == "trade":
             pygame.draw.rect(glovars.screen,glovars.white,(94,152,534,400),0)
+
+        # FREE AGENTS
         elif teamOptions == "free agents":
             pygame.draw.rect(glovars.screen,glovars.white,(94,152,534,400),0)
+            pygame.draw.rect(glovars.screen,glovars.black,(98,156,526,392),0)
+
+            #display moves left
+            glovars.message_display("free agents - moves left: " + str(f["info"][0]["freeAgentMoves"]),116,180,glovars.teamFont30,glovars.googusGreen)
+
+            #rotate through pages of free agents
+            pygame.draw.rect(glovars.screen,glovars.white,(294,548,334,50),0)
+            pygame.draw.rect(glovars.screen,glovars.black,(298,552,326,42),0)
+            pygame.draw.rect(glovars.screen,glovars.white,(516,548,112,50),0)
+            left_observe = pygame.draw.rect(glovars.screen,glovars.black,(520,552,50,42),0)
+            right_observe = pygame.draw.rect(glovars.screen,glovars.black,(574,552,50,42),0)
+            glovars.message_display("page " + str(page_observe),306,555,glovars.teamFont30,glovars.white)
+
+            finalPageMax = int(len(f["freeagents"])%3)
+
+            for i in range(3):
+                pygame.draw.rect(glovars.screen,glovars.white,(120,254 + (100 * i),334,58),0)
+                pygame.draw.rect(glovars.screen,glovars.black,(124,258 + (100 * i),326,50),0)
+                pygame.draw.rect(glovars.screen,glovars.white,(450,254 + (100 * i),150,58),0)
+                #freeAgentButtons[i] = 
+                pygame.draw.rect(glovars.screen,glovars.black,(454,258 + (100 * i),142,50),0)
+                if(page_observe != int(len(f["freeagents"])/3)):
+                    glovars.message_display(f["freeagents"][(page_observe * 3) + i],130,264 + (100 * i),glovars.teamFont30,glovars.white)
+                elif finalPageMax == 2:
+                    if i != 2:
+                        glovars.message_display(f["freeagents"][(page_observe * 3) + i],130,264 + (100 * i),glovars.teamFont30,glovars.white)
+                else:
+                    if i == 0:
+                        glovars.message_display(f["freeagents"][(page_observe * 3) + i],130,264 + (100 * i),glovars.teamFont30,glovars.white)
+
 
     #default all leagueOptions and league buttons to false
     leagueOptionsButtons = [False] * 6
@@ -298,7 +330,7 @@ def loopImages(data):
             pygame.draw.rect(glovars.screen,glovars.white,(516,548,112,50),0)
             left_observe = pygame.draw.rect(glovars.screen,glovars.black,(520,552,50,42),0)
             right_observe = pygame.draw.rect(glovars.screen,glovars.black,(574,552,50,42),0)
-            statTeam = glovars.defaultTeams[team_observe].name
+            statTeam = glovars.defaultTeams[page_observe].name
             statTeam = statTeam.split(' ', 1)[0]
             glovars.message_display(statTeam,306,555,glovars.teamFont30,glovars.white)
 
@@ -309,9 +341,9 @@ def loopImages(data):
             glovars.message_display("sog",503,180,glovars.teamFont30,glovars.googusGreen)
             glovars.message_display("a",583,180,glovars.teamFont30,glovars.googusGreen)
 
-            offPlayer = f["teamdata"][0][glovars.defaultTeams[team_observe].name][0]["offense"]
-            defPlayer = f["teamdata"][0][glovars.defaultTeams[team_observe].name][0]["defense"]
-            goalPlayer = f["teamdata"][0][glovars.defaultTeams[team_observe].name][0]["goalie"]
+            offPlayer = f["teamdata"][0][glovars.defaultTeams[page_observe].name][0]["offense"]
+            defPlayer = f["teamdata"][0][glovars.defaultTeams[page_observe].name][0]["defense"]
+            goalPlayer = f["teamdata"][0][glovars.defaultTeams[page_observe].name][0]["goalie"]
             players = [offPlayer, defPlayer, goalPlayer]
             for i in range(3):
                 glovars.message_display(players[i],116,265 + (100 * i),glovars.teamFont30,glovars.white)
@@ -338,11 +370,10 @@ def loopImages(data):
     glovars.message_display("league",763,88,glovars.EASmall30,glovars.white)
 
 
-def optionsCheck(teamOptions, leagueOptions, oday, oteam, f):
-    global day_observe, team_observe
+def optionsCheck(teamOptions, leagueOptions, opage, f):
+    global page_observe
 
-    day_observe = oday
-    team_observe = oteam
+    page_observe = opage
     moveColorsCheck = False
 
     #TEAM OPTIONS
@@ -351,22 +382,32 @@ def optionsCheck(teamOptions, leagueOptions, oday, oteam, f):
             teamOptions = "roster"
         if teamOptionsButtons[1].collidepoint(pygame.mouse.get_pos()):
             teamOptions = "schedule"
-            day_observe = day
+            page_observe = day
         else:
-            day_observe = f["info"][0]["day"]
+            page_observe = f["info"][0]["day"]
         if teamOptionsButtons[2].collidepoint(pygame.mouse.get_pos()):
             teamOptions = "trade"
         if teamOptionsButtons[3].collidepoint(pygame.mouse.get_pos()):
             teamOptions = "free agents"
+            page_observe = 0
     if left_observe and teamOptions == "schedule": #check for click on schedule tab
         if left_observe.collidepoint(pygame.mouse.get_pos()):
-            day_observe -= 1
-            if day_observe < 0:
-                day_observe = len(f["schedule"]) - 1
+            page_observe -= 1
+            if page_observe < 0:
+                page_observe = len(f["schedule"]) - 1
         if right_observe.collidepoint(pygame.mouse.get_pos()):
-            day_observe += 1
-            if day_observe > len(f["schedule"]) - 1:
-                day_observe = 0
+            page_observe += 1
+            if page_observe > len(f["schedule"]) - 1:
+                page_observe = 0
+    if left_observe and teamOptions == "free agents": #check for click on schedule tab
+        if left_observe.collidepoint(pygame.mouse.get_pos()):
+            page_observe -= 1
+            if page_observe < 0:
+                page_observe = int((len(f["freeagents"])-1)/3)
+        if right_observe.collidepoint(pygame.mouse.get_pos()):
+            page_observe += 1
+            if page_observe > int((len(f["freeagents"])-1)/3):
+                page_observe = 0
 
     #LEAGUE OPTIONS
     if leagueOptionsButtons[0] != False:
@@ -381,21 +422,44 @@ def optionsCheck(teamOptions, leagueOptions, oday, oteam, f):
     if leagueOptionsButtons[4] != False:
         if leagueOptionsButtons[4].collidepoint(pygame.mouse.get_pos()):
             leagueOptions = "player stats"
-            team_observe = playerTeam
+            page_observe = playerTeam
         if leagueOptionsButtons[5].collidepoint(pygame.mouse.get_pos()):
             leagueOptions = "team stats"
-            team_observe = playerTeam
+            page_observe = playerTeam
     if left_observe and leagueOptions == "player stats":
         if left_observe.collidepoint(pygame.mouse.get_pos()):
-            team_observe -= 1
-            if team_observe < 0:
-                team_observe = 5
+            page_observe -= 1
+            if page_observe < 0:
+                page_observe = 5
         if right_observe.collidepoint(pygame.mouse.get_pos()):
-            team_observe += 1
-            if team_observe > 5:
-                team_observe = 0
+            page_observe += 1
+            if page_observe > 5:
+                page_observe = 0
 
-    return teamOptions, leagueOptions, day_observe, team_observe
+    return teamOptions, leagueOptions, page_observe
+
+
+def rosterSwitch(i, f, data):
+    for j in range(len(f["teamdata"][0])):
+        if f["info"][0]["userteam"] == glovars.defaultTeams[j].name:
+            if (i == 0 or selected_move == 0) and (i == 1 or selected_move == 1):
+                newOffense = f["teamdata"][0][f["info"][0]["userteam"]][0]["defense"]
+                newDefense = f["teamdata"][0][f["info"][0]["userteam"]][0]["offense"]
+                newGoalie = f["teamdata"][0][f["info"][0]["userteam"]][0]["goalie"]
+            elif (i == 0 or selected_move == 0) and (i == 2 or selected_move == 2):
+                newOffense = f["teamdata"][0][f["info"][0]["userteam"]][0]["goalie"]
+                newDefense = f["teamdata"][0][f["info"][0]["userteam"]][0]["defense"]
+                newGoalie = f["teamdata"][0][f["info"][0]["userteam"]][0]["offense"]
+            elif (i == 1 or selected_move == 1) and (i == 2 or selected_move == 2):
+                newOffense = f["teamdata"][0][f["info"][0]["userteam"]][0]["offense"]
+                newDefense = f["teamdata"][0][f["info"][0]["userteam"]][0]["goalie"]
+                newGoalie = f["teamdata"][0][f["info"][0]["userteam"]][0]["defense"]
+    data["franchises"][fnum]["teamdata"][0][f["info"][0]["userteam"]][0]["offense"] = newOffense
+    data["franchises"][fnum]["teamdata"][0][f["info"][0]["userteam"]][0]["defense"] = newDefense
+    data["franchises"][fnum]["teamdata"][0][f["info"][0]["userteam"]][0]["goalie"] = newGoalie
+    wfile = open("savedata.json", "w")
+    json.dump(data, wfile)
+    wfile.close()
 
 
 def runMenu(menu, ffran):
@@ -432,15 +496,12 @@ def runMenu(menu, ffran):
 
     #current matchup day
     day = f["info"][0]["day"]
-    #current schedule observe day
-    oday = day
-
     #current player team
     for i in range(6):
         if f["info"][0]["userteam"] == glovars.defaultTeams[i].name:
             playerTeam = i
-
-    oteam = playerTeam
+    #defaults opage (operating page) to None
+    opage = None
 
     loopImages(data)
 
@@ -473,30 +534,12 @@ def runMenu(menu, ffran):
                             elif selected_move == None:
                                 selected_move = i
                             elif selected_move != i:
-                                for j in range(len(f["teamdata"][0])):
-                                    if f["info"][0]["userteam"] == glovars.defaultTeams[j].name:
-                                        if (i == 0 or selected_move == 0) and (i == 1 or selected_move == 1):
-                                            newOffense = f["teamdata"][0][f["info"][0]["userteam"]][0]["defense"]
-                                            newDefense = f["teamdata"][0][f["info"][0]["userteam"]][0]["offense"]
-                                            newGoalie = f["teamdata"][0][f["info"][0]["userteam"]][0]["goalie"]
-                                        elif (i == 0 or selected_move == 0) and (i == 2 or selected_move == 2):
-                                            newOffense = f["teamdata"][0][f["info"][0]["userteam"]][0]["goalie"]
-                                            newDefense = f["teamdata"][0][f["info"][0]["userteam"]][0]["defense"]
-                                            newGoalie = f["teamdata"][0][f["info"][0]["userteam"]][0]["offense"]
-                                        elif (i == 1 or selected_move == 1) and (i == 2 or selected_move == 2):
-                                            newOffense = f["teamdata"][0][f["info"][0]["userteam"]][0]["offense"]
-                                            newDefense = f["teamdata"][0][f["info"][0]["userteam"]][0]["goalie"]
-                                            newGoalie = f["teamdata"][0][f["info"][0]["userteam"]][0]["defense"]
-                                data["franchises"][fnum]["teamdata"][0][f["info"][0]["userteam"]][0]["offense"] = newOffense
-                                data["franchises"][fnum]["teamdata"][0][f["info"][0]["userteam"]][0]["defense"] = newDefense
-                                data["franchises"][fnum]["teamdata"][0][f["info"][0]["userteam"]][0]["goalie"] = newGoalie
-                                wfile = open("savedata.json", "w")
-                                json.dump(data, wfile)
-                                wfile.close()
+                                rosterSwitch(i, f, data)
                                 selected_move = None
+                                
 
                 #check if team and league options have been selected
-                teamOptions, leagueOptions, oday, oteam = optionsCheck(teamOptions, leagueOptions, oday, oteam, f)
+                teamOptions, leagueOptions, opage = optionsCheck(teamOptions, leagueOptions, opage, f)
 
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_y:

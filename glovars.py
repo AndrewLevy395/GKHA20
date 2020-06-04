@@ -1,6 +1,9 @@
 import pygame
+import json
+import random
 
 import defaultTeam
+import defaultPlayer
 
 def init(thisScreen):
 
@@ -48,7 +51,7 @@ def init(thisScreen):
     clock = pygame.time.Clock()
 
     #default team data for starting a franchise
-    global franchiseTeamData, franchisePlayerData
+    global franchiseTeamData, franchisePlayerData, franchiseFreeAgents
 
     teamData = [None] * 6
 
@@ -73,12 +76,28 @@ def init(thisScreen):
         playerData.append({"name": defaultTeams[i].goalie.name, "image": defaultTeams[i].goalie.sprite, 
         "stamina": defaultTeams[i].goalie.stamina, "shotAccuracy": defaultTeams[i].goalie.shotAccuracy, "shotSpeed": defaultTeams[i].goalie.shotSpeed, 
         "speed": defaultTeams[i].goalie.speed, "reaction": defaultTeams[i].goalie.reaction, "goalsScored": 0, "goalsAllowed": "0"})
+    
+    freeagents = defaultPlayer.franchiseFreeAgents
+    for i in range(len(freeagents)):
+        #default free agent data
+        playerData.append({"name": freeagents[i].name, "image": freeagents[i].sprite, 
+        "stamina": freeagents[i].stamina, "shotAccuracy": freeagents[i].shotAccuracy, "shotSpeed": freeagents[i].shotSpeed, 
+        "speed": freeagents[i].speed, "reaction": freeagents[i].reaction, "goalsScored": 0, "goalsAllowed": "0"})
 
     franchisePlayerData = playerData
 
     franchiseTeamData = [{ "Alaskan Thunder": teamData[0], "American Revolution": teamData[1], 
     "Boondock Beluga Whales": teamData[2], "Florida Tropics": teamData[3], "Smashville Chippewas": teamData[4],
     "Southside Spartans": teamData[5]}]
+
+    franchiseFreeAgents = ["Brad Robidoux", "George Bonadies", "Ian Beling", "Jarrett Hissick", "Kyle Kulthau", "Erik Levenduski", "Shem Prudhomme", "Kevin Carnale"]
+
+    #all name data
+    nfile = open("franchise/names.json", "r")
+    ndata = json.load(nfile)
+    nfile.close()
+
+    print(random.choice(ndata["first"]) + " " + random.choice(ndata["last"]))
 
 def message_display(text,x,y,font,color):
     TextSurf, TextRect = text_objects(text, font, color)
