@@ -41,7 +41,7 @@ def loopImages(data):
     #phone
     glovars.screen.blit(pygame.image.load("assets/images/phone.png"), (698,148))
 
-    # PLAY MENU
+    # NEXT GAME MENU
     if selected_menu == 0:
         
         pygame.draw.rect(glovars.screen,glovars.white,(94,76,234,58),0) #selected
@@ -103,6 +103,7 @@ def loopImages(data):
     if selected_menu == 1:
         pygame.draw.rect(glovars.screen,glovars.white,(394,76,234,58),0) #selected
 
+        # QUAD BOX MENU
         if teamOptions == "menu":
             #fill in outline borders for team options
             pygame.draw.rect(glovars.screen,glovars.white,(94,152,534,400),0)
