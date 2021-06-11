@@ -5,6 +5,8 @@ import defaultTeam
 import mainmenu
 import gameplay
 
+
+#initializes images to be used for play now menu
 def initImages():
     global computerTeamLeft, computerTeamInfo, computerTeamRight, playerTeamLeft, playerTeamInfo, playerTeamRight, backButtonClickCheck, playButtonClickCheck
 
@@ -116,6 +118,7 @@ def loopTint():
             glovars.screen.blit(pygame.image.load("assets/images/playButton.png"), (824,576))
 
 
+#initializes and runs menu loop
 def runMenu(listPlayer, listComputer, codeData):
     nextmenu = -1
     exitLoop = False

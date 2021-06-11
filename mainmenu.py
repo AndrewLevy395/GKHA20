@@ -9,10 +9,13 @@ import playnowmenu
 from franchise import franchiseload
 from storymode import storyload
 
+
+#initialize main menu images
 def initImages():
     
-    glovars.screen.fill(glovars.black)
+    glovars.screen.fill(glovars.black) #background
 
+    #panels when hovering over
     hovers[0] = (pygame.image.load("assets/images/playNow.png"))
     hovers[1] = (pygame.image.load("assets/images/franchise.png"))
     hovers[2] = (pygame.image.load("assets/images/storyMode.png"))
@@ -20,6 +23,7 @@ def initImages():
     hovers[4] = (pygame.image.load("assets/images/settings.png"))
     hovers[5] = (pygame.image.load("assets/images/credits.png"))
     
+    #blurred panels when not hovering over
     blurs[0] = (pygame.image.load("assets/images/playNowBlur.png"))
     blurs[1] = (pygame.image.load("assets/images/franchiseBlur.png"))
     blurs[2] = (pygame.image.load("assets/images/storyModeBlur.png"))
@@ -27,6 +31,7 @@ def initImages():
     blurs[4] = (pygame.image.load("assets/images/settingsBlur.png"))
     blurs[5] = (pygame.image.load("assets/images/creditsBlur.png"))
 
+    #list of all background images
     BG1 = pygame.image.load("assets/images/BG1.png")
     BG2 = pygame.image.load("assets/images/BG2.jpg")
     BG3 = pygame.image.load("assets/images/BG3.jpg")
@@ -49,9 +54,11 @@ def initImages():
     global bglist
     bglist = [BG1,BG2,BG3,BG4,BG5,BG6,BG7,BG8,BG9,BGA,BGB,BGC,BGD,BGE,BGF,BGG,BGH,BGI]
 
+    #gkha20 logo
     glovars.screen.blit(pygame.image.load("assets/images/gkha20Main.png"), (342, 0))
 
 
+#draw borders
 def initBorders():
     pygame.draw.rect(glovars.screen,glovars.black,(0,0,1024,4),0)
     pygame.draw.rect(glovars.screen,glovars.black,(0,207,1024,4),0)
@@ -62,8 +69,11 @@ def initBorders():
     pygame.draw.rect(glovars.screen,glovars.black,(682,0,4,626),0)
     pygame.draw.rect(glovars.screen,glovars.black,(1020,0,4,626),0)
 
+
+#initializes and runs menu loop
 def runMenu():
 
+    #check for save data
     if(not path.exists("savedata.json")):
         data = {}
         data["franchises"] = []
@@ -92,10 +102,11 @@ def runMenu():
 
     initImages()
 
-    menuStartTime = time.perf_counter()
+    menuStartTime = time.perf_counter() #keep track of time passed
     menuElapsedTime = 0
     menuTotalTime = 0
 
+    #menu loop
     while not exitLoop:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

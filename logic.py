@@ -5,6 +5,7 @@ import glovars
 def sortFunc(e):
     return e["points"]
 
+#logic to calculate which team is top of the rankings and then sorts them accordingly
 def calculateRankings(f):
 
     teampoints = [{"mascot": "Thunder", "name": "Alaskan Thunder", "points": 0},

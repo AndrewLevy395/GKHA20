@@ -5,6 +5,8 @@ import random
 import defaultTeam
 import defaultPlayer
 
+
+#initializes all global variables for the game
 def init(thisScreen):
 
     #colors
@@ -53,9 +55,8 @@ def init(thisScreen):
     #default team data for starting a franchise
     global franchiseTeamData, franchisePlayerData, franchiseFreeAgents
 
-    teamData = [None] * 6
-
-    playerData = []
+    teamData = [None] * 6 #creates 6 teams to start
+    playerData = [] #infinite players
 
     for i in range(len(defaultTeams)):
         #default team data
@@ -84,27 +85,33 @@ def init(thisScreen):
         "stamina": freeagents[i].stamina, "shotAccuracy": freeagents[i].shotAccuracy, "shotSpeed": freeagents[i].shotSpeed, 
         "speed": freeagents[i].speed, "reaction": freeagents[i].reaction, "goalsScored": 0, "goalsAllowed": "0"})
 
+    #franchise data starts out the same as default rosters and teams
     franchisePlayerData = playerData
-
     franchiseTeamData = [{ "Alaskan Thunder": teamData[0], "American Revolution": teamData[1], 
     "Boondock Beluga Whales": teamData[2], "Florida Tropics": teamData[3], "Smashville Chippewas": teamData[4],
     "Southside Spartans": teamData[5]}]
 
+    #8 free agents to start
     franchiseFreeAgents = ["Brad Robidoux", "George Bonadies", "Ian Beling", "Jarrett Hissick", "Kyle Kulthau", "Erik Levenduski", "Shem Prudhomme", "Kevin Carnale"]
 
-    #all name data
+    #all create-a-name data
     nfile = open("franchise/names.json", "r")
     ndata = json.load(nfile)
     nfile.close()
 
+    #test print name
     print(random.choice(ndata["first"]) + " " + random.choice(ndata["last"]))
 
+
+#displays a message (extra pygame function)
 def message_display(text,x,y,font,color):
     TextSurf, TextRect = text_objects(text, font, color)
     TextRect.topleft = (x,y)
     screen.blit(TextSurf, TextRect)
     return TextRect.width
 
+
+#text as an object for messsage_display
 def text_objects(text, font, color):
     textSurface = font.render(text, True, color)
     return textSurface, textSurface.get_rect()

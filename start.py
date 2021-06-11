@@ -2,10 +2,10 @@ import os
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 import time
-
 import glovars
 
 
+#initialize pygame module, screen, and global game variables
 def init():
     global width, height
     pygame.init()
@@ -16,12 +16,14 @@ def init():
     initImages()
 
 
+#initialize intro screen images (probably will be deleted)
 def initImages():
     global introScreen, introScreenStart
     introScreen = pygame.image.load("assets/images/gkhaMain.png")
     introScreenStart = pygame.image.load("assets/images/gkhaMainClick.png")
 
 
+#run intro sequence (needs be redone)
 def intro():
     intro = True
     exitLoop = False
@@ -54,12 +56,14 @@ def intro():
     return exitLoop
 
 
+#run the game (ooo so powerful)
 def game():
     mainmenu.runMenu()
 
 
+#call game functions
 init()
-import mainmenu
+import mainmenu #have to import mainmenu after global variables are initialized
 #intro()
 game()
 pygame.quit()
